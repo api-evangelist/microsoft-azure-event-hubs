@@ -26,7 +26,7 @@ paths:
   /subscriptions/{subscriptionId}/providers/Microsoft.EventHub/namespaces:
     get:
       operationId: Namespaces_List
-      summary: List all namespaces
+      summary: Azure Event Hubs List all namespaces
       description: >-
         Lists all the available Namespaces within a subscription, irrespective
         of the resource groups.
@@ -51,7 +51,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces:
     get:
       operationId: Namespaces_ListByResourceGroup
-      summary: List namespaces by resource group
+      summary: Azure Event Hubs List namespaces by resource group
       description: Lists the available Namespaces within a resource group.
       tags:
         - Namespaces
@@ -75,7 +75,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}:
     put:
       operationId: Namespaces_CreateOrUpdate
-      summary: Create or update a namespace
+      summary: Azure Event Hubs Create or update a namespace
       description: >-
         Creates or updates a namespace. Once created, this namespace's resource
         manifest is immutable. This operation is idempotent.
@@ -116,7 +116,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     get:
       operationId: Namespaces_Get
-      summary: Get a namespace
+      summary: Azure Event Hubs Get a namespace
       description: Gets the description of the specified namespace.
       tags:
         - Namespaces
@@ -140,7 +140,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     patch:
       operationId: Namespaces_Update
-      summary: Update a namespace
+      summary: Azure Event Hubs Update a namespace
       description: >-
         Creates or updates a namespace. Once created, this namespace's resource
         manifest is immutable. This operation is idempotent.
@@ -181,7 +181,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: Namespaces_Delete
-      summary: Delete a namespace
+      summary: Azure Event Hubs Delete a namespace
       description: >-
         Deletes an existing namespace. This operation also removes all
         associated resources under the namespace.
@@ -205,10 +205,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/networkRuleSets/default:
-    put:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/networkRuleSets/default
+  : put:
       operationId: Namespaces_CreateOrUpdateNetworkRuleSet
-      summary: Create or update network rule set
+      summary: Azure Event Hubs Create or update network rule set
       description: Create or update NetworkRuleSet for a Namespace.
       tags:
         - Namespaces
@@ -239,7 +239,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     get:
       operationId: Namespaces_GetNetworkRuleSet
-      summary: Get network rule set
+      summary: Azure Event Hubs Get network rule set
       description: Gets NetworkRuleSet for a Namespace.
       tags:
         - Namespaces
@@ -261,10 +261,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs
+  : get:
       operationId: EventHubs_ListByNamespace
-      summary: List event hubs by namespace
+      summary: Azure Event Hubs List event hubs by namespace
       description: Gets all the Event Hubs in a Namespace.
       tags:
         - Event Hubs
@@ -303,10 +303,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}:
-    put:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}
+  : put:
       operationId: EventHubs_CreateOrUpdate
-      summary: Create or update an event hub
+      summary: Azure Event Hubs Create or update an event hub
       description: >-
         Creates or updates a new Event Hub as a nested resource within a
         Namespace.
@@ -340,7 +340,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     get:
       operationId: EventHubs_Get
-      summary: Get an event hub
+      summary: Azure Event Hubs Get an event hub
       description: Gets an Event Hubs description for the specified Event Hub.
       tags:
         - Event Hubs
@@ -365,7 +365,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: EventHubs_Delete
-      summary: Delete an event hub
+      summary: Azure Event Hubs Delete an event hub
       description: >-
         Deletes an Event Hub from the specified Namespace and resource group.
       tags:
@@ -387,10 +387,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups
+  : get:
       operationId: ConsumerGroups_ListByEventHub
-      summary: List consumer groups
+      summary: Azure Event Hubs List consumer groups
       description: >-
         Gets all the consumer groups in a Namespace. An empty feed is returned
         if no consumer group exists in the Namespace.
@@ -427,10 +427,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups/{consumerGroupName}:
-    put:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups/{consumerGroupName}
+  : put:
       operationId: ConsumerGroups_CreateOrUpdate
-      summary: Create or update a consumer group
+      summary: Azure Event Hubs Create or update a consumer group
       description: >-
         Creates or updates an Event Hubs consumer group as a nested resource
         within a Namespace.
@@ -465,7 +465,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     get:
       operationId: ConsumerGroups_Get
-      summary: Get a consumer group
+      summary: Azure Event Hubs Get a consumer group
       description: Gets a description for the specified consumer group.
       tags:
         - Consumer Groups
@@ -491,7 +491,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: ConsumerGroups_Delete
-      summary: Delete a consumer group
+      summary: Azure Event Hubs Delete a consumer group
       description: >-
         Deletes a consumer group from the specified Event Hub and resource
         group.
@@ -515,10 +515,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules
+  : get:
       operationId: Namespaces_ListAuthorizationRules
-      summary: List namespace authorization rules
+      summary: Azure Event Hubs List namespace authorization rules
       description: Gets a list of authorization rules for a Namespace.
       tags:
         - Authorization Rules
@@ -540,10 +540,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}:
-    put:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}
+  : put:
       operationId: Namespaces_CreateOrUpdateAuthorizationRule
-      summary: Create or update namespace authorization rule
+      summary: Azure Event Hubs Create or update namespace authorization rule
       description: Creates or updates an AuthorizationRule for a Namespace.
       tags:
         - Authorization Rules
@@ -575,7 +575,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     get:
       operationId: Namespaces_GetAuthorizationRule
-      summary: Get namespace authorization rule
+      summary: Azure Event Hubs Get namespace authorization rule
       description: Gets an AuthorizationRule for a Namespace by rule name.
       tags:
         - Authorization Rules
@@ -600,7 +600,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: Namespaces_DeleteAuthorizationRule
-      summary: Delete namespace authorization rule
+      summary: Azure Event Hubs Delete namespace authorization rule
       description: Deletes an AuthorizationRule for a Namespace.
       tags:
         - Authorization Rules
@@ -621,10 +621,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/listKeys:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/listKeys
+  : post:
       operationId: Namespaces_ListKeys
-      summary: List namespace keys
+      summary: Azure Event Hubs List namespace keys
       description: Gets the primary and secondary connection strings for the Namespace.
       tags:
         - Authorization Rules
@@ -647,10 +647,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/regenerateKeys:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/regenerateKeys
+  : post:
       operationId: Namespaces_RegenerateKeys
-      summary: Regenerate namespace keys
+      summary: Azure Event Hubs Regenerate namespace keys
       description: >-
         Regenerates the primary or secondary connection strings for the
         specified Namespace.
@@ -682,10 +682,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs
+  : get:
       operationId: DisasterRecoveryConfigs_List
-      summary: List disaster recovery configurations
+      summary: Azure Event Hubs List disaster recovery configurations
       description: Gets all Alias (Disaster Recovery configurations).
       tags:
         - Disaster Recovery Configs
@@ -707,10 +707,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}:
-    put:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}
+  : put:
       operationId: DisasterRecoveryConfigs_CreateOrUpdate
-      summary: Create or update a disaster recovery configuration
+      summary: Azure Event Hubs Create or update a disaster recovery configuration
       description: Creates or updates a new Alias (Disaster Recovery configuration).
       tags:
         - Disaster Recovery Configs
@@ -757,7 +757,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     get:
       operationId: DisasterRecoveryConfigs_Get
-      summary: Get a disaster recovery configuration
+      summary: Azure Event Hubs Get a disaster recovery configuration
       description: >-
         Retrieves Alias (Disaster Recovery configuration) for primary or
         secondary namespace.
@@ -792,7 +792,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: DisasterRecoveryConfigs_Delete
-      summary: Delete a disaster recovery configuration
+      summary: Azure Event Hubs Delete a disaster recovery configuration
       description: Deletes an Alias (Disaster Recovery configuration).
       tags:
         - Disaster Recovery Configs
@@ -820,10 +820,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/breakPairing:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/breakPairing
+  : post:
       operationId: DisasterRecoveryConfigs_BreakPairing
-      summary: Break disaster recovery pairing
+      summary: Azure Event Hubs Break disaster recovery pairing
       description: >-
         This operation disables the Disaster Recovery and stops replicating
         changes from primary to secondary namespaces.
@@ -851,10 +851,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/failover:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/failover
+  : post:
       operationId: DisasterRecoveryConfigs_FailOver
-      summary: Initiate disaster recovery failover
+      summary: Azure Event Hubs Initiate disaster recovery failover
       description: >-
         Invokes GEO DR failover and reconfigures the alias to point to the
         secondary namespace.
@@ -882,10 +882,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/schemagroups:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/schemagroups
+  : get:
       operationId: SchemaRegistry_ListByNamespace
-      summary: List schema groups
+      summary: Azure Event Hubs List schema groups
       description: Gets all the Schema Groups in a Namespace.
       tags:
         - Schema Registry
@@ -919,10 +919,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/schemagroups/{schemaGroupName}:
-    put:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/schemagroups/{schemaGroupName}
+  : put:
       operationId: SchemaRegistry_CreateOrUpdate
-      summary: Create or update a schema group
+      summary: Azure Event Hubs Create or update a schema group
       description: Creates or Updates an EventHub schema group.
       tags:
         - Schema Registry
@@ -961,7 +961,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     get:
       operationId: SchemaRegistry_Get
-      summary: Get a schema group
+      summary: Azure Event Hubs Get a schema group
       description: Gets the details of an EventHub schema group.
       tags:
         - Schema Registry
@@ -993,7 +993,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: SchemaRegistry_Delete
-      summary: Delete a schema group
+      summary: Azure Event Hubs Delete a schema group
       description: Deletes an EventHub schema group.
       tags:
         - Schema Registry
@@ -1024,7 +1024,7 @@ paths:
   /providers/Microsoft.EventHub/operations:
     get:
       operationId: Operations_List
-      summary: List available operations
+      summary: Azure Event Hubs List available operations
       description: Lists all of the available Event Hub REST API operations.
       tags:
         - Operations

@@ -31,7 +31,7 @@ paths:
   /{eventHubPath}/messages:
     post:
       operationId: SendEvent
-      summary: Send event
+      summary: Azure Event Hubs Send event
       description: >-
         Sends a new event to an event hub. The event body can be any content
         type. Custom user properties can be set via the UserProperties header.
@@ -94,7 +94,7 @@ paths:
   /{eventHubPath}/messages?batch=true:
     post:
       operationId: SendBatchEvents
-      summary: Send batch events
+      summary: Azure Event Hubs Send batch events
       description: >-
         Sends a new batched message event to an Event Hub. Batching reduces
         the number of messages that are transmitted by merging information
@@ -156,7 +156,7 @@ paths:
   /{eventHubPath}/partitions/{partitionId}/messages:
     post:
       operationId: SendPartitionEvent
-      summary: Send partition event
+      summary: Azure Event Hubs Send partition event
       description: >-
         Sends a new event to a specified partition in an Event Hub. This
         allows you to target a specific partition for the event rather than
@@ -214,7 +214,7 @@ paths:
   /{eventHubPath}/publishers/{publisherId}/messages:
     post:
       operationId: SendEventWithPublisherId
-      summary: Send event with publisher ID
+      summary: Azure Event Hubs Send event with publisher ID
       description: >-
         Sends a new event to an Event Hub with a specified publisher ID. This
         enables publisher identity tracking and publisher policy enforcement
