@@ -2093,17 +2093,17 @@ components:
           format: date-time
           description: The timestamp of resource last modification (UTC).
 tags:
-  - name: Namespaces
-    description: Operations for managing Event Hubs namespaces.
-  - name: Event Hubs
-    description: Operations for managing event hubs within a namespace.
-  - name: Consumer Groups
-    description: Operations for managing consumer groups within an event hub.
   - name: Authorization Rules
     description: Operations for managing authorization rules and access keys.
+  - name: Consumer Groups
+    description: Operations for managing consumer groups within an event hub.
   - name: Disaster Recovery Configs
     description: Operations for managing disaster recovery (Geo-DR) configurations.
-  - name: Schema Registry
-    description: Operations for managing schema groups in the Schema Registry.
+  - name: Event Hubs
+    description: Operations for managing event hubs within a namespace.
+  - name: Namespaces
+    description: Operations for managing Event Hubs namespaces.
   - name: Operations
     description: Operations for listing available Event Hub REST API operations.
+  - name: Schema Registry
+    description: Operations for managing schema groups in the Schema Registry.
