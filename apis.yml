@@ -7,8 +7,8 @@ tags:
   - IoT
   - Message Ingestion
   - Real-Time Processing
-created: '2024'
-modified: '2026-03-16'
+created: '2024-01-01'
+modified: '2026-04-28'
 specificationVersion: '0.18'
 url: https://azure.microsoft.com/en-us/services/event-hubs/
 apis:
