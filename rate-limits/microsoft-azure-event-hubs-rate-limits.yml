@@ -4,102 +4,69 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Azure Event Hubs
 providerId: microsoft-azure-event-hubs
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Big Data
-  - Event Streaming
-  - IoT
-  - Message Ingestion
-  - Real-Time Processing
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Azure Event Hubs API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - Event Streaming
+  - Microsoft Azure
+description: Event Hubs throughput is bounded by the purchased Throughput Units (Basic/Standard) or
+  Processing Units (Premium). Each TU allows up to 1 MB/s or 1,000 events/s ingress, 2 MB/s egress.
+  Quota exceeded triggers ServerBusy. Premium PUs and Dedicated CUs scale higher; Auto-Inflate on Standard
+  scales TUs up automatically.
+sources:
+  - https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-quotas
+  - https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-scalability
+  - https://learn.microsoft.com/en-us/azure/event-hubs/compare-tiers
 responseCodes:
+  serverBusy: 50008
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Azure Event Hubs REST API
-      - Azure Event Hubs Data Plane API
-      - Azure Event Hubs Messaging API
-      - Azure Event Hubs SDK
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Azure Event Hubs REST API
-      - Azure Event Hubs Data Plane API
-      - Azure Event Hubs Messaging API
-      - Azure Event Hubs SDK
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Azure Event Hubs REST API
-      - Azure Event Hubs Data Plane API
-      - Azure Event Hubs Messaging API
-      - Azure Event Hubs SDK
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Azure Event Hubs REST API
-      - Azure Event Hubs Data Plane API
-      - Azure Event Hubs Messaging API
-      - Azure Event Hubs SDK
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Azure Event Hubs REST API
-      - Azure Event Hubs Data Plane API
-      - Azure Event Hubs Messaging API
-      - Azure Event Hubs SDK
+  - name: Per-TU ingress (Basic, Standard)
+    scope: namespace
+    metric: bandwidth
+    limit: '1 MB/s or 1,000 events/s per TU'
+    timeFrame: second
+  - name: Per-TU egress (Basic, Standard)
+    scope: namespace
+    metric: bandwidth
+    limit: '2 MB/s per TU'
+    timeFrame: second
+  - name: Standard tier max TUs (self-serve)
+    scope: namespace
+    metric: throughput_units
+    limit: 20
+    notes: Standard namespaces can request up to 40 TUs via support.
+  - name: Standard tier max TUs (with support request)
+    scope: namespace
+    metric: throughput_units
+    limit: 40
+  - name: Premium PUs per namespace
+    scope: namespace
+    metric: processing_units
+    limit: 16
+    notes: Purchase in 1, 2, 4, 6, 8, 10, 12, or 16 PUs. Each PU provides higher and more isolated
+      throughput than a TU.
+  - name: Ingress event size
+    scope: per_request
+    metric: event_size
+    limit: '1 MB (Standard); larger on Premium/Dedicated'
+  - name: Brokered connections
+    scope: namespace
+    metric: connections
+    limit: 'Basic 100; Standard 1,000; Premium/Dedicated higher'
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Auto-Inflate
+    description: Standard namespaces can enable Auto-Inflate to scale TUs upward automatically when
+      ingress hits the per-TU ceiling, up to a configured maximum.
+  - name: Backoff on ServerBusy
+    description: When the broker returns ServerBusy (50008) or 429, back off exponentially with jitter
+      and reduce send concurrency.
+  - name: Partition planning
+    description: Use partitions to scale consumer parallelism; default 32 partitions per Event Hub
+      on Standard, more on Premium/Dedicated.
+  - name: Batch sends
+    description: Batch events to amortize overhead and stay within per-TU/PU event/sec ceilings.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com
