@@ -90,11 +90,11 @@ apis:
 common:
   - type: Portal
     url: https://portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/Microsoft.EventHub%2Fnamespaces
-  - type: Getting Started
+  - type: GettingStarted
     url: https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-quickstart-portal
   - type: Pricing
     url: https://azure.microsoft.com/en-us/pricing/details/event-hubs/
-  - type: Service Level Agreement
+  - type: ServiceLevelAgreement
     url: https://azure.microsoft.com/en-us/support/legal/sla/event-hubs/
   - type: Authentication
     url: https://learn.microsoft.com/en-us/azure/event-hubs/authenticate-application
@@ -104,7 +104,7 @@ common:
     url: https://github.com/Azure/azure-event-hubs/tree/master/samples
   - type: Support
     url: https://azure.microsoft.com/en-us/support/
-  - type: Status
+  - type: StatusPage
     url: https://status.azure.com/
   - type: Blog
     url: https://techcommunity.microsoft.com/t5/messaging-on-azure-and-net/bg-p/MessagingonAzureBlog
@@ -112,19 +112,19 @@ common:
     url: https://learn.microsoft.com/en-us/azure/event-hubs/
   - type: Quotas
     url: https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-quotas
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://azure.microsoft.com/en-us/support/legal/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://privacy.microsoft.com/en-us/privacystatement
   - type: SDKs
     url: https://learn.microsoft.com/en-us/azure/event-hubs/sdks
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/Azure
   - type: Website
     url: https://azure.microsoft.com/en-us/services/event-hubs/
   - type: Login
     url: https://portal.azure.com/
-  - type: Sign Up
+  - type: SignUp
     url: https://azure.microsoft.com/en-us/free/
   - type: Community
     url: https://learn.microsoft.com/en-us/answers/tags/165/azure-event-hubs/
