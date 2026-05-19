@@ -1,0 +1,296 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Event Hubs Management REST API — Namespaces
+  description: 'Azure Event Hubs Management REST API — Namespaces. 8 operations. Lead operation: Azure Event Hubs List all
+    namespaces. Self-contained Naftiko capability covering one Microsoft Azure Event Hubs business surface.'
+  tags:
+  - Microsoft Azure Event Hubs
+  - Namespaces
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_EVENT_HUBS_API_KEY: MICROSOFT_AZURE_EVENT_HUBS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-event-hubs-management-namespaces
+    baseUri: https://management.azure.com
+    description: Azure Event Hubs Management REST API — Namespaces business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.EventHub-namespaces
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.EventHub/namespaces
+      operations:
+      - name: namespaceslist
+        method: GET
+        description: Azure Event Hubs List all namespaces
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces
+      operations:
+      - name: namespaceslistbyresourcegroup
+        method: GET
+        description: Azure Event Hubs List namespaces by resource group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}
+      operations:
+      - name: namespacescreateorupdate
+        method: PUT
+        description: Azure Event Hubs Create or update a namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: namespacesget
+        method: GET
+        description: Azure Event Hubs Get a namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: namespacesupdate
+        method: PATCH
+        description: Azure Event Hubs Update a namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: namespacesdelete
+        method: DELETE
+        description: Azure Event Hubs Delete a namespace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/networkRuleSets/default
+      operations:
+      - name: namespacescreateorupdatenetworkruleset
+        method: PUT
+        description: Azure Event Hubs Create or update network rule set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: namespacesgetnetworkruleset
+        method: GET
+        description: Azure Event Hubs Get network rule set
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.MICROSOFT_AZURE_EVENT_HUBS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: azure-event-hubs-management-namespaces-rest
+    port: 8080
+    description: REST adapter for Azure Event Hubs Management REST API — Namespaces. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-eventhub/namespaces
+      name: subscriptions-subscriptionid-providers-microsoft-eventhub-namespaces
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.EventHub-namespaces.
+      operations:
+      - method: GET
+        name: namespaceslist
+        description: Azure Event Hubs List all namespaces
+        call: azure-event-hubs-management-namespaces.namespaceslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: namespaceslistbyresourcegroup
+        description: Azure Event Hubs List namespaces by resource group
+        call: azure-event-hubs-management-namespaces.namespaceslistbyresourcegroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: namespacescreateorupdate
+        description: Azure Event Hubs Create or update a namespace
+        call: azure-event-hubs-management-namespaces.namespacescreateorupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: namespacesget
+        description: Azure Event Hubs Get a namespace
+        call: azure-event-hubs-management-namespaces.namespacesget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: namespacesupdate
+        description: Azure Event Hubs Update a namespace
+        call: azure-event-hubs-management-namespaces.namespacesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: namespacesdelete
+        description: Azure Event Hubs Delete a namespace
+        call: azure-event-hubs-management-namespaces.namespacesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/networkrulesets/default
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: namespacescreateorupdatenetworkruleset
+        description: Azure Event Hubs Create or update network rule set
+        call: azure-event-hubs-management-namespaces.namespacescreateorupdatenetworkruleset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: namespacesgetnetworkruleset
+        description: Azure Event Hubs Get network rule set
+        call: azure-event-hubs-management-namespaces.namespacesgetnetworkruleset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-event-hubs-management-namespaces-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Event Hubs Management REST API — Namespaces. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: azure-event-hubs-list-all
+      description: Azure Event Hubs List all namespaces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespaceslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-list-namespaces
+      description: Azure Event Hubs List namespaces by resource group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespaceslistbyresourcegroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-create-update
+      description: Azure Event Hubs Create or update a namespace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespacescreateorupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-get-namespace
+      description: Azure Event Hubs Get a namespace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespacesget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-update-namespace
+      description: Azure Event Hubs Update a namespace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespacesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-delete-namespace
+      description: Azure Event Hubs Delete a namespace
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespacesdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-create-update-2
+      description: Azure Event Hubs Create or update network rule set
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespacescreateorupdatenetworkruleset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-get-network
+      description: Azure Event Hubs Get network rule set
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-namespaces.namespacesgetnetworkruleset
+      outputParameters:
+      - type: object
+        mapping: $.

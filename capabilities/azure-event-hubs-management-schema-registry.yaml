@@ -1,0 +1,202 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Event Hubs Management REST API — Schema Registry
+  description: 'Azure Event Hubs Management REST API — Schema Registry. 4 operations. Lead operation: Azure Event Hubs List
+    schema groups. Self-contained Naftiko capability covering one Microsoft Azure Event Hubs business surface.'
+  tags:
+  - Microsoft Azure Event Hubs
+  - Schema Registry
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_EVENT_HUBS_API_KEY: MICROSOFT_AZURE_EVENT_HUBS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-event-hubs-management-schema-registry
+    baseUri: https://management.azure.com
+    description: Azure Event Hubs Management REST API — Schema Registry business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/schemagroups
+      operations:
+      - name: schemaregistrylistbynamespace
+        method: GET
+        description: Azure Event Hubs List schema groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $skip
+          in: query
+          type: integer
+        - name: $top
+          in: query
+          type: integer
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/schemagroups/{schemaGroupName}
+      operations:
+      - name: schemaregistrycreateorupdate
+        method: PUT
+        description: Azure Event Hubs Create or update a schema group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: schemaGroupName
+          in: path
+          type: string
+          description: The Schema Group name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: schemaregistryget
+        method: GET
+        description: Azure Event Hubs Get a schema group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: schemaGroupName
+          in: path
+          type: string
+          description: The Schema Group name.
+          required: true
+      - name: schemaregistrydelete
+        method: DELETE
+        description: Azure Event Hubs Delete a schema group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: schemaGroupName
+          in: path
+          type: string
+          description: The Schema Group name.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.MICROSOFT_AZURE_EVENT_HUBS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: azure-event-hubs-management-schema-registry-rest
+    port: 8080
+    description: REST adapter for Azure Event Hubs Management REST API — Schema Registry. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/schemagroups
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: schemaregistrylistbynamespace
+        description: Azure Event Hubs List schema groups
+        call: azure-event-hubs-management-schema-registry.schemaregistrylistbynamespace
+        with:
+          $skip: rest.$skip
+          $top: rest.$top
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/schemagroups/{schemagroupname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: schemaregistrycreateorupdate
+        description: Azure Event Hubs Create or update a schema group
+        call: azure-event-hubs-management-schema-registry.schemaregistrycreateorupdate
+        with:
+          schemaGroupName: rest.schemaGroupName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: schemaregistryget
+        description: Azure Event Hubs Get a schema group
+        call: azure-event-hubs-management-schema-registry.schemaregistryget
+        with:
+          schemaGroupName: rest.schemaGroupName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: schemaregistrydelete
+        description: Azure Event Hubs Delete a schema group
+        call: azure-event-hubs-management-schema-registry.schemaregistrydelete
+        with:
+          schemaGroupName: rest.schemaGroupName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-event-hubs-management-schema-registry-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Event Hubs Management REST API — Schema Registry. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: azure-event-hubs-list-schema
+      description: Azure Event Hubs List schema groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-schema-registry.schemaregistrylistbynamespace
+      with:
+        $skip: tools.$skip
+        $top: tools.$top
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-create-update
+      description: Azure Event Hubs Create or update a schema group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-schema-registry.schemaregistrycreateorupdate
+      with:
+        schemaGroupName: tools.schemaGroupName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-get-schema
+      description: Azure Event Hubs Get a schema group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-schema-registry.schemaregistryget
+      with:
+        schemaGroupName: tools.schemaGroupName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-delete-schema
+      description: Azure Event Hubs Delete a schema group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-event-hubs-management-schema-registry.schemaregistrydelete
+      with:
+        schemaGroupName: tools.schemaGroupName
+      outputParameters:
+      - type: object
+        mapping: $.

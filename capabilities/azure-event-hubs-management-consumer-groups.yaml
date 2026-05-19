@@ -1,0 +1,175 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Event Hubs Management REST API — Consumer Groups
+  description: 'Azure Event Hubs Management REST API — Consumer Groups. 4 operations. Lead operation: Azure Event Hubs List
+    consumer groups. Self-contained Naftiko capability covering one Microsoft Azure Event Hubs business surface.'
+  tags:
+  - Microsoft Azure Event Hubs
+  - Consumer Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_EVENT_HUBS_API_KEY: MICROSOFT_AZURE_EVENT_HUBS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-event-hubs-management-consumer-groups
+    baseUri: https://management.azure.com
+    description: Azure Event Hubs Management REST API — Consumer Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups
+      operations:
+      - name: consumergroupslistbyeventhub
+        method: GET
+        description: Azure Event Hubs List consumer groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $skip
+          in: query
+          type: integer
+        - name: $top
+          in: query
+          type: integer
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups/{consumerGroupName}
+      operations:
+      - name: consumergroupscreateorupdate
+        method: PUT
+        description: Azure Event Hubs Create or update a consumer group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: consumergroupsget
+        method: GET
+        description: Azure Event Hubs Get a consumer group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: consumergroupsdelete
+        method: DELETE
+        description: Azure Event Hubs Delete a consumer group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.MICROSOFT_AZURE_EVENT_HUBS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: azure-event-hubs-management-consumer-groups-rest
+    port: 8080
+    description: REST adapter for Azure Event Hubs Management REST API — Consumer Groups. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/eventhubs/{eventhubname}/consumergroups
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: consumergroupslistbyeventhub
+        description: Azure Event Hubs List consumer groups
+        call: azure-event-hubs-management-consumer-groups.consumergroupslistbyeventhub
+        with:
+          $skip: rest.$skip
+          $top: rest.$top
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/eventhubs/{eventhubname}/consumergroups/{consumergroupname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: consumergroupscreateorupdate
+        description: Azure Event Hubs Create or update a consumer group
+        call: azure-event-hubs-management-consumer-groups.consumergroupscreateorupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: consumergroupsget
+        description: Azure Event Hubs Get a consumer group
+        call: azure-event-hubs-management-consumer-groups.consumergroupsget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: consumergroupsdelete
+        description: Azure Event Hubs Delete a consumer group
+        call: azure-event-hubs-management-consumer-groups.consumergroupsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-event-hubs-management-consumer-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Event Hubs Management REST API — Consumer Groups. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: azure-event-hubs-list-consumer
+      description: Azure Event Hubs List consumer groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-consumer-groups.consumergroupslistbyeventhub
+      with:
+        $skip: tools.$skip
+        $top: tools.$top
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-create-update
+      description: Azure Event Hubs Create or update a consumer group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-consumer-groups.consumergroupscreateorupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-get-consumer
+      description: Azure Event Hubs Get a consumer group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-consumer-groups.consumergroupsget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-delete-consumer
+      description: Azure Event Hubs Delete a consumer group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-event-hubs-management-consumer-groups.consumergroupsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

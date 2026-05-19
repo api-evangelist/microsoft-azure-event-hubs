@@ -1,0 +1,275 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Event Hubs Management REST API — Disaster Recovery Configs
+  description: 'Azure Event Hubs Management REST API — Disaster Recovery Configs. 6 operations. Lead operation: Azure Event
+    Hubs List disaster recovery configurations. Self-contained Naftiko capability covering one Microsoft Azure Event Hubs
+    business surface.'
+  tags:
+  - Microsoft Azure Event Hubs
+  - Disaster Recovery Configs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_EVENT_HUBS_API_KEY: MICROSOFT_AZURE_EVENT_HUBS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-event-hubs-management-disaster-recovery-configs
+    baseUri: https://management.azure.com
+    description: Azure Event Hubs Management REST API — Disaster Recovery Configs business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs
+      operations:
+      - name: disasterrecoveryconfigslist
+        method: GET
+        description: Azure Event Hubs List disaster recovery configurations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}
+      operations:
+      - name: disasterrecoveryconfigscreateorupdate
+        method: PUT
+        description: Azure Event Hubs Create or update a disaster recovery configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: The Disaster Recovery configuration name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: disasterrecoveryconfigsget
+        method: GET
+        description: Azure Event Hubs Get a disaster recovery configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: The Disaster Recovery configuration name.
+          required: true
+      - name: disasterrecoveryconfigsdelete
+        method: DELETE
+        description: Azure Event Hubs Delete a disaster recovery configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: The Disaster Recovery configuration name.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/breakPairing
+      operations:
+      - name: disasterrecoveryconfigsbreakpairing
+        method: POST
+        description: Azure Event Hubs Break disaster recovery pairing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: The Disaster Recovery configuration name.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/failover
+      operations:
+      - name: disasterrecoveryconfigsfailover
+        method: POST
+        description: Azure Event Hubs Initiate disaster recovery failover
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: alias
+          in: path
+          type: string
+          description: The Disaster Recovery configuration name.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.MICROSOFT_AZURE_EVENT_HUBS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: azure-event-hubs-management-disaster-recovery-configs-rest
+    port: 8080
+    description: REST adapter for Azure Event Hubs Management REST API — Disaster Recovery Configs. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/disasterrecoveryconfigs
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: disasterrecoveryconfigslist
+        description: Azure Event Hubs List disaster recovery configurations
+        call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/disasterrecoveryconfigs/{alias}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: disasterrecoveryconfigscreateorupdate
+        description: Azure Event Hubs Create or update a disaster recovery configuration
+        call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigscreateorupdate
+        with:
+          alias: rest.alias
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: disasterrecoveryconfigsget
+        description: Azure Event Hubs Get a disaster recovery configuration
+        call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsget
+        with:
+          alias: rest.alias
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: disasterrecoveryconfigsdelete
+        description: Azure Event Hubs Delete a disaster recovery configuration
+        call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsdelete
+        with:
+          alias: rest.alias
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/disasterrecoveryconfigs/{alias}/breakpairing
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: disasterrecoveryconfigsbreakpairing
+        description: Azure Event Hubs Break disaster recovery pairing
+        call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsbreakpairing
+        with:
+          alias: rest.alias
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-eventhub/namespaces/{namespacename}/disasterrecoveryconfigs/{alias}/failover
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: disasterrecoveryconfigsfailover
+        description: Azure Event Hubs Initiate disaster recovery failover
+        call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsfailover
+        with:
+          alias: rest.alias
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-event-hubs-management-disaster-recovery-configs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Event Hubs Management REST API — Disaster Recovery Configs. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: azure-event-hubs-list-disaster
+      description: Azure Event Hubs List disaster recovery configurations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-create-update
+      description: Azure Event Hubs Create or update a disaster recovery configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigscreateorupdate
+      with:
+        alias: tools.alias
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-get-disaster
+      description: Azure Event Hubs Get a disaster recovery configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsget
+      with:
+        alias: tools.alias
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-delete-disaster
+      description: Azure Event Hubs Delete a disaster recovery configuration
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsdelete
+      with:
+        alias: tools.alias
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-break-disaster
+      description: Azure Event Hubs Break disaster recovery pairing
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsbreakpairing
+      with:
+        alias: tools.alias
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-event-hubs-initiate-disaster
+      description: Azure Event Hubs Initiate disaster recovery failover
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-event-hubs-management-disaster-recovery-configs.disasterrecoveryconfigsfailover
+      with:
+        alias: tools.alias
+      outputParameters:
+      - type: object
+        mapping: $.
