@@ -1,0 +1,154 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Create an Event Hub with a Consumer Group
+  summary: Create an event hub in an existing namespace, add a consumer group, and confirm the consumer group is listed.
+  description: >-
+    Builds out the read side of an Event Hubs topology. Within an already
+    provisioned namespace it creates an event hub, then creates a dedicated
+    consumer group on that event hub, and finally lists the consumer groups to
+    confirm the new one is registered. Each step inlines its ARM request and
+    response handling so the flow can be executed directly.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-event-hub-with-consumer-group
+  summary: Create an event hub and a consumer group, then verify the group exists.
+  description: >-
+    Creates an event hub in the target namespace, creates a named consumer group
+    on it, and lists the consumer groups to assert the created group is present.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - eventHubName
+    - consumerGroupName
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that contains the namespace.
+      namespaceName:
+        type: string
+        description: The existing Event Hubs namespace name.
+      eventHubName:
+        type: string
+        description: The event hub name to create.
+      consumerGroupName:
+        type: string
+        description: The consumer group name to create on the event hub.
+      partitionCount:
+        type: integer
+        description: Number of partitions for the event hub (1-32).
+        default: 4
+      userMetadata:
+        type: string
+        description: Optional user-defined metadata stored on the consumer group.
+        default: created-by-arazzo-workflow
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: createEventHub
+    description: >-
+      Create the event hub as a nested resource within the namespace using the
+      requested partition count.
+    operationId: EventHubs_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: eventHubName
+      in: path
+      value: $inputs.eventHubName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          partitionCount: $inputs.partitionCount
+          status: Active
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      eventHubId: $response.body#/id
+  - stepId: createConsumerGroup
+    description: >-
+      Create the consumer group on the new event hub, attaching the supplied
+      user metadata.
+    operationId: ConsumerGroups_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: eventHubName
+      in: path
+      value: $inputs.eventHubName
+    - name: consumerGroupName
+      in: path
+      value: $inputs.consumerGroupName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          userMetadata: $inputs.userMetadata
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      consumerGroupId: $response.body#/id
+  - stepId: listConsumerGroups
+    description: >-
+      List the consumer groups on the event hub to confirm the newly created
+      group is registered.
+    operationId: ConsumerGroups_ListByEventHub
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: eventHubName
+      in: path
+      value: $inputs.eventHubName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.value[?(@.id == "$steps.createConsumerGroup.outputs.consumerGroupId")]
+      type: jsonpath
+    outputs:
+      consumerGroups: $response.body#/value
+  outputs:
+    eventHubId: $steps.createEventHub.outputs.eventHubId
+    consumerGroupId: $steps.createConsumerGroup.outputs.consumerGroupId
+    consumerGroups: $steps.listConsumerGroups.outputs.consumerGroups

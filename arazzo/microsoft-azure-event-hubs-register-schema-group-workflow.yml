@@ -1,0 +1,127 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Register a Schema Registry Group
+  summary: Create an Avro schema group in a namespace's schema registry with a compatibility mode, then read it back to confirm registration.
+  description: >-
+    Sets up governance for event payloads using the Event Hubs schema registry.
+    The flow creates a schema group in the namespace with the requested schema
+    type and compatibility mode, then reads the schema group back to confirm the
+    settings were applied. Each step inlines its ARM
+    {properties:{...}} request so the registration can be executed directly.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-schema-group
+  summary: Create a schema registry group and verify its compatibility settings.
+  description: >-
+    Creates an Avro schema group with the supplied compatibility mode and reads
+    it back to confirm schemaType and schemaCompatibility.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - schemaGroupName
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that contains the namespace.
+      namespaceName:
+        type: string
+        description: The existing Event Hubs namespace name (must be Standard or Premium for schema registry).
+      schemaGroupName:
+        type: string
+        description: The schema group name to create.
+      schemaType:
+        type: string
+        description: The schema type for the group.
+        enum:
+        - Unknown
+        - Avro
+        default: Avro
+      schemaCompatibility:
+        type: string
+        description: The compatibility mode enforced for schemas in the group.
+        enum:
+        - None
+        - Backward
+        - Forward
+        default: Backward
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: createSchemaGroup
+    description: >-
+      Create or update the schema group with the supplied schema type and
+      compatibility mode.
+    operationId: SchemaRegistry_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: schemaGroupName
+      in: path
+      value: $inputs.schemaGroupName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          schemaType: $inputs.schemaType
+          schemaCompatibility: $inputs.schemaCompatibility
+          groupProperties: {}
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      schemaGroupId: $response.body#/id
+  - stepId: confirmSchemaGroup
+    description: >-
+      Read the schema group back and confirm the schema type and compatibility
+      mode were applied.
+    operationId: SchemaRegistry_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: schemaGroupName
+      in: path
+      value: $inputs.schemaGroupName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.schemaCompatibility == "$inputs.schemaCompatibility"
+      type: jsonpath
+    outputs:
+      schemaType: $response.body#/properties/schemaType
+      schemaCompatibility: $response.body#/properties/schemaCompatibility
+      eTag: $response.body#/properties/eTag
+  outputs:
+    schemaGroupId: $steps.createSchemaGroup.outputs.schemaGroupId
+    schemaType: $steps.confirmSchemaGroup.outputs.schemaType
+    schemaCompatibility: $steps.confirmSchemaGroup.outputs.schemaCompatibility

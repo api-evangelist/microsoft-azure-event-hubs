@@ -1,0 +1,139 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Rotate Namespace Keys
+  summary: Capture the current connection strings for an authorization rule, regenerate one of the keys, and read back the new credentials.
+  description: >-
+    A safe key-rotation flow for an Event Hubs namespace authorization rule. It
+    first lists the current connection strings so the old value can be retired,
+    regenerates the requested key (primary or secondary), and then lists the keys
+    again to surface the freshly minted connection string. Each step inlines its
+    ARM request so the rotation can be executed and audited directly.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rotate-namespace-keys
+  summary: Regenerate an authorization rule key and return the new connection string.
+  description: >-
+    Reads the current keys, regenerates the requested key type, and reads the
+    refreshed keys for the namespace authorization rule.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - authorizationRuleName
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that contains the namespace.
+      namespaceName:
+        type: string
+        description: The existing Event Hubs namespace name.
+      authorizationRuleName:
+        type: string
+        description: The authorization rule (SAS policy) whose key is rotated.
+      keyType:
+        type: string
+        description: Which key to regenerate.
+        enum:
+        - PrimaryKey
+        - SecondaryKey
+        default: PrimaryKey
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: listCurrentKeys
+    description: >-
+      List the current connection strings so the value being rotated out can be
+      retired from dependent applications.
+    operationId: Namespaces_ListKeys
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: authorizationRuleName
+      in: path
+      value: $inputs.authorizationRuleName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      previousPrimaryConnectionString: $response.body#/primaryConnectionString
+      previousSecondaryConnectionString: $response.body#/secondaryConnectionString
+  - stepId: regenerateKey
+    description: >-
+      Regenerate the requested key type for the authorization rule.
+    operationId: Namespaces_RegenerateKeys
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: authorizationRuleName
+      in: path
+      value: $inputs.authorizationRuleName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        keyType: $inputs.keyType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      rotatedPrimaryConnectionString: $response.body#/primaryConnectionString
+      rotatedSecondaryConnectionString: $response.body#/secondaryConnectionString
+  - stepId: confirmKeys
+    description: >-
+      Read the keys back after rotation to confirm the new connection string is
+      live before distributing it.
+    operationId: Namespaces_ListKeys
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: authorizationRuleName
+      in: path
+      value: $inputs.authorizationRuleName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newPrimaryConnectionString: $response.body#/primaryConnectionString
+      newSecondaryConnectionString: $response.body#/secondaryConnectionString
+      keyName: $response.body#/keyName
+  outputs:
+    previousPrimaryConnectionString: $steps.listCurrentKeys.outputs.previousPrimaryConnectionString
+    newPrimaryConnectionString: $steps.confirmKeys.outputs.newPrimaryConnectionString
+    newSecondaryConnectionString: $steps.confirmKeys.outputs.newSecondaryConnectionString

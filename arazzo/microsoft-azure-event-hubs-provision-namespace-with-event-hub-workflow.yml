@@ -1,0 +1,178 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Provision a Namespace with an Event Hub
+  summary: Create an Event Hubs namespace, wait for it to finish provisioning, then create an event hub inside it.
+  description: >-
+    The foundational Event Hubs onboarding flow. It creates a Microsoft.EventHub
+    namespace in a resource group, polls the namespace until the Azure Resource
+    Manager provisioning state reaches Succeeded, and then creates an event hub
+    as a nested resource within the now-ready namespace. Each step spells out its
+    ARM request inline — including the {properties:{...}} envelope ARM expects —
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-namespace-with-event-hub
+  summary: Create a namespace, wait for provisioning, and add an event hub.
+  description: >-
+    Creates an Event Hubs namespace with the supplied SKU and location, polls the
+    namespace Get operation until provisioningState is Succeeded, and then creates
+    an event hub with the requested partition count and retention.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - location
+    - eventHubName
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that will contain the namespace.
+      namespaceName:
+        type: string
+        description: The Event Hubs namespace name (6-50 chars, must be globally unique).
+      location:
+        type: string
+        description: Azure region for the namespace (e.g. eastus).
+      skuName:
+        type: string
+        description: The namespace SKU name.
+        enum:
+        - Basic
+        - Standard
+        - Premium
+        default: Standard
+      eventHubName:
+        type: string
+        description: The event hub name to create within the namespace.
+      partitionCount:
+        type: integer
+        description: Number of partitions for the event hub (1-32).
+        default: 4
+      messageRetentionInDays:
+        type: integer
+        description: Days to retain events on the event hub (1-7).
+        default: 1
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: createNamespace
+    description: >-
+      Create or update the Event Hubs namespace with the supplied location and
+      SKU. ARM accepts the request immediately and provisions asynchronously.
+    operationId: Namespaces_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        sku:
+          name: $inputs.skuName
+          tier: $inputs.skuName
+        properties:
+          kafkaEnabled: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      namespaceId: $response.body#/id
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollNamespace
+    description: >-
+      Poll the namespace until Azure reports the provisioning state as Succeeded
+      so dependent resources can be created safely.
+    operationId: Namespaces_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      serviceBusEndpoint: $response.body#/properties/serviceBusEndpoint
+    onSuccess:
+    - name: namespaceReady
+      type: goto
+      stepId: createEventHub
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: stillProvisioning
+      type: retry
+      stepId: pollNamespace
+      retryAfter: 15
+      retryLimit: 20
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  - stepId: createEventHub
+    description: >-
+      Create the event hub inside the provisioned namespace with the requested
+      partition count and message retention.
+    operationId: EventHubs_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: eventHubName
+      in: path
+      value: $inputs.eventHubName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          partitionCount: $inputs.partitionCount
+          messageRetentionInDays: $inputs.messageRetentionInDays
+          status: Active
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      eventHubId: $response.body#/id
+      partitionIds: $response.body#/properties/partitionIds
+  outputs:
+    namespaceId: $steps.createNamespace.outputs.namespaceId
+    serviceBusEndpoint: $steps.pollNamespace.outputs.serviceBusEndpoint
+    eventHubId: $steps.createEventHub.outputs.eventHubId

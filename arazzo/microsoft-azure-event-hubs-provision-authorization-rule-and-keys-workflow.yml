@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Provision an Authorization Rule and Retrieve Keys
+  summary: Create a namespace shared access authorization rule with the requested rights, then fetch its connection strings and keys.
+  description: >-
+    The standard way to mint SAS credentials for an Event Hubs namespace. It
+    creates a namespace-level authorization rule with the requested rights
+    (Manage, Send, Listen), reads it back to confirm the rights took effect, and
+    then lists the primary and secondary connection strings and keys that
+    applications use to connect. Each step inlines its ARM request and response
+    handling.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-authorization-rule-and-keys
+  summary: Create a namespace authorization rule and retrieve its keys.
+  description: >-
+    Creates a namespace authorization rule with the supplied rights, verifies the
+    rule, and lists the connection strings and keys for application use.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - authorizationRuleName
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that contains the namespace.
+      namespaceName:
+        type: string
+        description: The existing Event Hubs namespace name.
+      authorizationRuleName:
+        type: string
+        description: The authorization rule (SAS policy) name to create.
+      rights:
+        type: array
+        description: The rights granted to the rule.
+        items:
+          type: string
+          enum:
+          - Manage
+          - Send
+          - Listen
+        default:
+        - Send
+        - Listen
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: createAuthorizationRule
+    description: >-
+      Create or update the namespace authorization rule with the supplied rights.
+    operationId: Namespaces_CreateOrUpdateAuthorizationRule
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: authorizationRuleName
+      in: path
+      value: $inputs.authorizationRuleName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          rights: $inputs.rights
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ruleId: $response.body#/id
+      grantedRights: $response.body#/properties/rights
+  - stepId: getAuthorizationRule
+    description: >-
+      Read the authorization rule back to confirm the rights were applied before
+      handing out keys.
+    operationId: Namespaces_GetAuthorizationRule
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: authorizationRuleName
+      in: path
+      value: $inputs.authorizationRuleName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      grantedRights: $response.body#/properties/rights
+  - stepId: listKeys
+    description: >-
+      List the primary and secondary connection strings and keys for the
+      authorization rule so applications can connect.
+    operationId: Namespaces_ListKeys
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: authorizationRuleName
+      in: path
+      value: $inputs.authorizationRuleName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      primaryConnectionString: $response.body#/primaryConnectionString
+      secondaryConnectionString: $response.body#/secondaryConnectionString
+      keyName: $response.body#/keyName
+  outputs:
+    ruleId: $steps.createAuthorizationRule.outputs.ruleId
+    grantedRights: $steps.getAuthorizationRule.outputs.grantedRights
+    primaryConnectionString: $steps.listKeys.outputs.primaryConnectionString
+    secondaryConnectionString: $steps.listKeys.outputs.secondaryConnectionString

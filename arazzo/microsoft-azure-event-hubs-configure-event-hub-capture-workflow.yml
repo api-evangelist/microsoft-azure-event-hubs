@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Configure Event Hub Capture to Blob Storage
+  summary: Create an event hub with Avro capture enabled to an Azure Blob container, then read it back to confirm capture is active.
+  description: >-
+    Enables the Event Hubs Capture feature so events are automatically archived
+    to Azure Blob Storage. The flow creates an event hub whose captureDescription
+    streams Avro-encoded events into the supplied storage account and blob
+    container on a fixed time and size window, then reads the event hub back to
+    confirm capture is enabled. Each step inlines the full ARM
+    {properties:{captureDescription:{...}}} request so it can be executed
+    directly.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: configure-event-hub-capture
+  summary: Create an event hub with Avro capture to a blob container and verify it.
+  description: >-
+    Creates an event hub with capture enabled to the supplied storage account and
+    container, then reads the event hub to confirm captureDescription.enabled is
+    true.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - eventHubName
+    - storageAccountResourceId
+    - blobContainer
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that contains the namespace.
+      namespaceName:
+        type: string
+        description: The existing Event Hubs namespace name.
+      eventHubName:
+        type: string
+        description: The event hub name to create with capture enabled.
+      storageAccountResourceId:
+        type: string
+        description: ARM resource id of the storage account that receives captured blobs.
+      blobContainer:
+        type: string
+        description: Blob container name that receives captured Avro files.
+      partitionCount:
+        type: integer
+        description: Number of partitions for the event hub (1-32).
+        default: 4
+      intervalInSeconds:
+        type: integer
+        description: Capture time window in seconds (60-900).
+        default: 300
+      sizeLimitInBytes:
+        type: integer
+        description: Capture size window in bytes (10485760-524288000).
+        default: 314572800
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: createEventHubWithCapture
+    description: >-
+      Create the event hub with an Avro capture description that archives events
+      to the supplied storage account and blob container.
+    operationId: EventHubs_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: eventHubName
+      in: path
+      value: $inputs.eventHubName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          partitionCount: $inputs.partitionCount
+          status: Active
+          captureDescription:
+            enabled: true
+            encoding: Avro
+            intervalInSeconds: $inputs.intervalInSeconds
+            sizeLimitInBytes: $inputs.sizeLimitInBytes
+            skipEmptyArchives: true
+            destination:
+              name: EventHubArchive.AzureBlockBlob
+              properties:
+                storageAccountResourceId: $inputs.storageAccountResourceId
+                blobContainer: $inputs.blobContainer
+                archiveNameFormat: "{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      eventHubId: $response.body#/id
+      captureEnabled: $response.body#/properties/captureDescription/enabled
+  - stepId: confirmCapture
+    description: >-
+      Read the event hub back and assert that the capture description reports as
+      enabled.
+    operationId: EventHubs_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: eventHubName
+      in: path
+      value: $inputs.eventHubName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.captureDescription.enabled == true
+      type: jsonpath
+    outputs:
+      captureEnabled: $response.body#/properties/captureDescription/enabled
+      captureEncoding: $response.body#/properties/captureDescription/encoding
+  outputs:
+    eventHubId: $steps.createEventHubWithCapture.outputs.eventHubId
+    captureEnabled: $steps.confirmCapture.outputs.captureEnabled
+    captureEncoding: $steps.confirmCapture.outputs.captureEncoding

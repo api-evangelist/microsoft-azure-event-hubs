@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Lock Down a Namespace Network
+  summary: Apply a default-deny network rule set with an IP allow rule to a namespace, then read it back to confirm the deny posture.
+  description: >-
+    Hardens an Event Hubs namespace by restricting which networks may reach it.
+    The flow applies a NetworkRuleSet whose default action is Deny while allowing
+    a single trusted IP mask, then reads the rule set back to confirm the
+    default-deny posture is in effect. Each step inlines its ARM
+    {properties:{...}} request so the lockdown can be executed and audited
+    directly.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: lock-down-namespace-network
+  summary: Apply a default-deny network rule set to a namespace and verify it.
+  description: >-
+    Creates a NetworkRuleSet with defaultAction Deny and a single allowed IP
+    mask, then reads the rule set to confirm the deny default took effect.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - allowedIpMask
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that contains the namespace.
+      namespaceName:
+        type: string
+        description: The existing Event Hubs namespace name.
+      allowedIpMask:
+        type: string
+        description: The IP mask (CIDR) permitted to reach the namespace (e.g. 203.0.113.0/24).
+      trustedServiceAccessEnabled:
+        type: boolean
+        description: Whether trusted Azure services may bypass the deny rule.
+        default: true
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: applyNetworkRuleSet
+    description: >-
+      Apply a network rule set with a Deny default action that allows only the
+      supplied trusted IP mask.
+    operationId: Namespaces_CreateOrUpdateNetworkRuleSet
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          defaultAction: Deny
+          trustedServiceAccessEnabled: $inputs.trustedServiceAccessEnabled
+          publicNetworkAccess: Enabled
+          ipRules:
+          - ipMask: $inputs.allowedIpMask
+            action: Allow
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ruleSetId: $response.body#/id
+      defaultAction: $response.body#/properties/defaultAction
+  - stepId: confirmNetworkRuleSet
+    description: >-
+      Read the network rule set back and assert the default action is Deny so the
+      lockdown is verified.
+    operationId: Namespaces_GetNetworkRuleSet
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.defaultAction == "Deny"
+      type: jsonpath
+    outputs:
+      defaultAction: $response.body#/properties/defaultAction
+      ipRules: $response.body#/properties/ipRules
+  outputs:
+    ruleSetId: $steps.applyNetworkRuleSet.outputs.ruleSetId
+    defaultAction: $steps.confirmNetworkRuleSet.outputs.defaultAction
+    ipRules: $steps.confirmNetworkRuleSet.outputs.ipRules

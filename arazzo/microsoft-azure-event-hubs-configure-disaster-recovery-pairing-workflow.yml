@@ -1,0 +1,140 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Azure Event Hubs Configure Geo-Disaster Recovery Pairing
+  summary: Create a Geo-DR alias pairing a primary namespace to a secondary, then poll the configuration until replication provisioning succeeds.
+  description: >-
+    Establishes Geo-disaster recovery for an Event Hubs namespace. The flow
+    creates a Disaster Recovery alias on the primary namespace pointing at a
+    secondary partner namespace, then polls the configuration until its
+    provisioning state reaches Succeeded so replication is confirmed active. Each
+    step inlines its ARM {properties:{...}} request and provisioning-state polling
+    so the pairing can be executed and monitored directly.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventHubsManagementApi
+  url: ../openapi/azure-event-hubs-management-openapi.yml
+  type: openapi
+workflows:
+- workflowId: configure-disaster-recovery-pairing
+  summary: Create a Geo-DR alias and poll until replication provisioning succeeds.
+  description: >-
+    Creates a Disaster Recovery alias on the primary namespace referencing the
+    secondary partner namespace, then polls the alias until provisioningState is
+    Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - namespaceName
+    - alias
+    - partnerNamespaceId
+    properties:
+      subscriptionId:
+        type: string
+        description: Azure subscription identifier that scopes the resource.
+      resourceGroupName:
+        type: string
+        description: Name of the resource group that contains the primary namespace.
+      namespaceName:
+        type: string
+        description: The primary Event Hubs namespace name.
+      alias:
+        type: string
+        description: The Disaster Recovery configuration (alias) name (1-50 chars).
+      partnerNamespaceId:
+        type: string
+        description: ARM id of the secondary namespace to pair with for GEO DR.
+      alternateName:
+        type: string
+        description: Alternate name to use when the alias and namespace names are the same.
+        default: ''
+      apiVersion:
+        type: string
+        description: Client API version for the management plane.
+        default: '2024-01-01'
+  steps:
+  - stepId: createPairing
+    description: >-
+      Create the Disaster Recovery alias on the primary namespace, pointing at
+      the secondary partner namespace.
+    operationId: DisasterRecoveryConfigs_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: alias
+      in: path
+      value: $inputs.alias
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          partnerNamespace: $inputs.partnerNamespaceId
+          alternateName: $inputs.alternateName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      aliasId: $response.body#/id
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollPairing
+    description: >-
+      Poll the Disaster Recovery alias until its provisioning state reaches
+      Succeeded, confirming the pairing is fully replicating.
+    operationId: DisasterRecoveryConfigs_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: namespaceName
+      in: path
+      value: $inputs.namespaceName
+    - name: alias
+      in: path
+      value: $inputs.alias
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      role: $response.body#/properties/role
+    onSuccess:
+    - name: pairingReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: pairingFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed"
+        type: jsonpath
+    - name: stillPairing
+      type: retry
+      stepId: pollPairing
+      retryAfter: 15
+      retryLimit: 20
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Accepted"
+        type: jsonpath
+  outputs:
+    aliasId: $steps.createPairing.outputs.aliasId
+    provisioningState: $steps.pollPairing.outputs.provisioningState
+    role: $steps.pollPairing.outputs.role
