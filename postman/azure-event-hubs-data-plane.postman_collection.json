@@ -1,0 +1,1392 @@
+{
+  "info": {
+    "_postman_id": "a06b5198-5310-4486-9611-d564520a86e2",
+    "name": "Azure Event Hubs Data Plane REST API",
+    "description": "The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.\n\nContact Support:\n Name: Microsoft Azure Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:11:10.000Z",
+    "updatedAt": "2026-06-05T15:11:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a06b5198-5310-4486-9611-d564520a86e2"
+  },
+  "item": [
+    {
+      "name": "{eventHubPath}",
+      "item": [
+        {
+          "name": "messages",
+          "item": [
+            {
+              "name": "Azure Event Hubs Send event",
+              "id": "88735605-d668-4ef6-a9bd-b8a12242a9cc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "NoRetry"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:eventHubPath/messages?api-version=2014-01&timeout=60",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The API version to use for the request.",
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "ec09b9d8-92b1-47d3-8d20-4b90c44aa1be",
+                      "key": "eventHubPath",
+                      "value": "<string>",
+                      "description": "(Required) The path to the event hub."
+                    }
+                  ]
+                },
+                "description": "Sends a new event to an event hub. The event body can be any content type. Custom user properties can be set via the UserProperties header."
+              },
+              "response": [
+                {
+                  "id": "5cae8727-a047-403f-a35b-f1bcb8ed9a6c",
+                  "name": "Event sent successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                        "key": "x-ms-retrypolicy",
+                        "value": "NoRetry"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:eventHubPath/messages?api-version=2014-01&timeout=60",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":eventHubPath",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for the request.",
+                          "key": "api-version",
+                          "value": "2014-01"
+                        },
+                        {
+                          "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                          "key": "timeout",
+                          "value": "60"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventHubPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "xml",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/xml"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Response content type.",
+                        "type": "text/plain"
+                      },
+                      "key": "Content-Type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-5cae8727-a047-403f-a35b-f1bcb8ed9a6c"
+                },
+                {
+                  "id": "78e9a98e-bc2c-4a33-9d6c-1f9e686db90b",
+                  "name": "Authorization failure.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                        "key": "x-ms-retrypolicy",
+                        "value": "NoRetry"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:eventHubPath/messages?api-version=2014-01&timeout=60",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":eventHubPath",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for the request.",
+                          "key": "api-version",
+                          "value": "2014-01"
+                        },
+                        {
+                          "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                          "key": "timeout",
+                          "value": "60"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventHubPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "xml",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/xml"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-78e9a98e-bc2c-4a33-9d6c-1f9e686db90b"
+                },
+                {
+                  "id": "2aa1c912-6114-42fd-a7d9-b09d083176a5",
+                  "name": "Internal error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                        "key": "x-ms-retrypolicy",
+                        "value": "NoRetry"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:eventHubPath/messages?api-version=2014-01&timeout=60",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":eventHubPath",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for the request.",
+                          "key": "api-version",
+                          "value": "2014-01"
+                        },
+                        {
+                          "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                          "key": "timeout",
+                          "value": "60"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventHubPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "xml",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/xml"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-2aa1c912-6114-42fd-a7d9-b09d083176a5"
+                }
+              ],
+              "createdAt": "2026-06-05T15:11:11.000Z",
+              "updatedAt": "2026-06-05T15:11:11.000Z",
+              "uid": "35240-88735605-d668-4ef6-a9bd-b8a12242a9cc"
+            }
+          ],
+          "id": "c2cc3891-5bbc-45a4-b58f-f6df231007d9",
+          "createdAt": "2026-06-05T15:11:11.000Z",
+          "updatedAt": "2026-06-05T15:11:11.000Z",
+          "uid": "35240-c2cc3891-5bbc-45a4-b58f-f6df231007d9"
+        },
+        {
+          "name": "messages?batch=true",
+          "item": [
+            {
+              "name": "Azure Event Hubs Send batch events",
+              "id": "7e086749-eeba-48bf-a8a3-f6d9859c982e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "NoRetry"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.microsoft.servicebus.json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"aliqua4\": \"<string>\",\n      \"veniamed\": \"<string>\",\n      \"irure_f\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  },\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"ipsum7bf\": \"<string>\",\n      \"veniam_b\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  }\n]"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:eventHubPath/messages?batch=true&api-version=2014-01&timeout=60",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "query": [
+                    {
+                      "key": "batch",
+                      "value": "true"
+                    },
+                    {
+                      "description": "(Required) The API version to use for the request.",
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "049bd5ae-4236-488a-8750-c9f69855631f",
+                      "key": "eventHubPath",
+                      "value": "<string>",
+                      "description": "(Required) The path to the event hub."
+                    }
+                  ]
+                },
+                "description": "Sends a new batched message event to an Event Hub. Batching reduces the number of messages that are transmitted by merging information from multiple messages into a single batch of messages. The message body must be a valid JSON array payload following the convention to describe each message. The Content-Type header must be set to application/vnd.microsoft.servicebus.json."
+              },
+              "response": [
+                {
+                  "id": "896f924d-6f8f-4674-8ed1-26a9d472785c",
+                  "name": "Batch events sent successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                        "key": "x-ms-retrypolicy",
+                        "value": "NoRetry"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.microsoft.servicebus.json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"aliqua4\": \"<string>\",\n      \"veniamed\": \"<string>\",\n      \"irure_f\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  },\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"ipsum7bf\": \"<string>\",\n      \"veniam_b\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  }\n]"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:eventHubPath/messages?api-version=2014-01&timeout=60",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":eventHubPath",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for the request.",
+                          "key": "api-version",
+                          "value": "2014-01"
+                        },
+                        {
+                          "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                          "key": "timeout",
+                          "value": "60"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventHubPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "xml",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/xml"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-896f924d-6f8f-4674-8ed1-26a9d472785c"
+                },
+                {
+                  "id": "aa3e2c2c-ad40-4f73-b377-c34f6486b0d7",
+                  "name": "Authorization failure.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                        "key": "x-ms-retrypolicy",
+                        "value": "NoRetry"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.microsoft.servicebus.json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"aliqua4\": \"<string>\",\n      \"veniamed\": \"<string>\",\n      \"irure_f\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  },\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"ipsum7bf\": \"<string>\",\n      \"veniam_b\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  }\n]"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:eventHubPath/messages?api-version=2014-01&timeout=60",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":eventHubPath",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for the request.",
+                          "key": "api-version",
+                          "value": "2014-01"
+                        },
+                        {
+                          "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                          "key": "timeout",
+                          "value": "60"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventHubPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "xml",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/xml"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-aa3e2c2c-ad40-4f73-b377-c34f6486b0d7"
+                },
+                {
+                  "id": "8b75e3a1-f966-4412-be6e-499e102f468d",
+                  "name": "Internal error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                        "key": "x-ms-retrypolicy",
+                        "value": "NoRetry"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.microsoft.servicebus.json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"aliqua4\": \"<string>\",\n      \"veniamed\": \"<string>\",\n      \"irure_f\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  },\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"ipsum7bf\": \"<string>\",\n      \"veniam_b\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  }\n]"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:eventHubPath/messages?api-version=2014-01&timeout=60",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":eventHubPath",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The API version to use for the request.",
+                          "key": "api-version",
+                          "value": "2014-01"
+                        },
+                        {
+                          "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                          "key": "timeout",
+                          "value": "60"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventHubPath"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "xml",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/xml"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-8b75e3a1-f966-4412-be6e-499e102f468d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:11:11.000Z",
+              "updatedAt": "2026-06-05T15:11:11.000Z",
+              "uid": "35240-7e086749-eeba-48bf-a8a3-f6d9859c982e"
+            }
+          ],
+          "id": "0497abd8-dce2-4ec5-9711-120121353155",
+          "createdAt": "2026-06-05T15:11:11.000Z",
+          "updatedAt": "2026-06-05T15:11:11.000Z",
+          "uid": "35240-0497abd8-dce2-4ec5-9711-120121353155"
+        },
+        {
+          "name": "partitions",
+          "item": [
+            {
+              "name": "{partitionId}",
+              "item": [
+                {
+                  "name": "messages",
+                  "item": [
+                    {
+                      "name": "Azure Event Hubs Send partition event",
+                      "id": "261a0054-1d95-44f5-95bc-abd1beefec00",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                            "key": "x-ms-retrypolicy",
+                            "value": "NoRetry"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:eventHubPath/partitions/:partitionId/messages?api-version=2014-01&timeout=60",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":eventHubPath",
+                            "partitions",
+                            ":partitionId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The API version to use for the request.",
+                              "key": "api-version",
+                              "value": "2014-01"
+                            },
+                            {
+                              "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                              "key": "timeout",
+                              "value": "60"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "d976fafb-1653-402b-b52b-0953809bd8a2",
+                              "key": "eventHubPath",
+                              "value": "<string>",
+                              "description": "(Required) The path to the event hub."
+                            },
+                            {
+                              "id": "1b5d303a-93ca-4846-8774-f237b562518d",
+                              "key": "partitionId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of a partition on an event hub."
+                            }
+                          ]
+                        },
+                        "description": "Sends a new event to a specified partition in an Event Hub. This allows you to target a specific partition for the event rather than letting Event Hubs distribute it."
+                      },
+                      "response": [
+                        {
+                          "id": "36bfa6cc-6dda-4071-bf78-bee8e080d71f",
+                          "name": "Partition event sent successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                                "key": "x-ms-retrypolicy",
+                                "value": "NoRetry"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:eventHubPath/partitions/:partitionId/messages?api-version=2014-01&timeout=60",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":eventHubPath",
+                                "partitions",
+                                ":partitionId",
+                                "messages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for the request.",
+                                  "key": "api-version",
+                                  "value": "2014-01"
+                                },
+                                {
+                                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                                  "key": "timeout",
+                                  "value": "60"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "eventHubPath"
+                                },
+                                {
+                                  "key": "partitionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "createdAt": "2026-06-05T15:11:11.000Z",
+                          "updatedAt": "2026-06-05T15:11:11.000Z",
+                          "uid": "35240-36bfa6cc-6dda-4071-bf78-bee8e080d71f"
+                        },
+                        {
+                          "id": "c9336714-d580-4410-87f1-d7b2c2b267bd",
+                          "name": "Authorization failure.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                                "key": "x-ms-retrypolicy",
+                                "value": "NoRetry"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:eventHubPath/partitions/:partitionId/messages?api-version=2014-01&timeout=60",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":eventHubPath",
+                                "partitions",
+                                ":partitionId",
+                                "messages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for the request.",
+                                  "key": "api-version",
+                                  "value": "2014-01"
+                                },
+                                {
+                                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                                  "key": "timeout",
+                                  "value": "60"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "eventHubPath"
+                                },
+                                {
+                                  "key": "partitionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                          "createdAt": "2026-06-05T15:11:11.000Z",
+                          "updatedAt": "2026-06-05T15:11:11.000Z",
+                          "uid": "35240-c9336714-d580-4410-87f1-d7b2c2b267bd"
+                        },
+                        {
+                          "id": "2a538d26-9fbc-4033-9272-a36fe895e34d",
+                          "name": "Internal error.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                                "key": "x-ms-retrypolicy",
+                                "value": "NoRetry"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:eventHubPath/partitions/:partitionId/messages?api-version=2014-01&timeout=60",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":eventHubPath",
+                                "partitions",
+                                ":partitionId",
+                                "messages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for the request.",
+                                  "key": "api-version",
+                                  "value": "2014-01"
+                                },
+                                {
+                                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                                  "key": "timeout",
+                                  "value": "60"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "eventHubPath"
+                                },
+                                {
+                                  "key": "partitionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                          "createdAt": "2026-06-05T15:11:11.000Z",
+                          "updatedAt": "2026-06-05T15:11:11.000Z",
+                          "uid": "35240-2a538d26-9fbc-4033-9272-a36fe895e34d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:11:11.000Z",
+                      "updatedAt": "2026-06-05T15:11:11.000Z",
+                      "uid": "35240-261a0054-1d95-44f5-95bc-abd1beefec00"
+                    }
+                  ],
+                  "id": "4a00a5e7-89fb-4185-becb-e973f1ade502",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-4a00a5e7-89fb-4185-becb-e973f1ade502"
+                }
+              ],
+              "id": "9183dfea-a5d0-4d62-b8a5-b2cc089ce351",
+              "createdAt": "2026-06-05T15:11:11.000Z",
+              "updatedAt": "2026-06-05T15:11:11.000Z",
+              "uid": "35240-9183dfea-a5d0-4d62-b8a5-b2cc089ce351"
+            }
+          ],
+          "id": "8d655253-341d-4393-b101-39d4645520ee",
+          "createdAt": "2026-06-05T15:11:11.000Z",
+          "updatedAt": "2026-06-05T15:11:11.000Z",
+          "uid": "35240-8d655253-341d-4393-b101-39d4645520ee"
+        },
+        {
+          "name": "publishers",
+          "item": [
+            {
+              "name": "{publisherId}",
+              "item": [
+                {
+                  "name": "messages",
+                  "item": [
+                    {
+                      "name": "Azure Event Hubs Send event with publisher ID",
+                      "id": "f3964ba1-e03b-4c44-b74a-4b677e200ecb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                            "key": "x-ms-retrypolicy",
+                            "value": "NoRetry"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/xml"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:eventHubPath/publishers/:publisherId/messages?api-version=2014-01&timeout=60",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":eventHubPath",
+                            "publishers",
+                            ":publisherId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The API version to use for the request.",
+                              "key": "api-version",
+                              "value": "2014-01"
+                            },
+                            {
+                              "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                              "key": "timeout",
+                              "value": "60"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "cc3139c0-3979-459b-b898-f70cde9cec3e",
+                              "key": "eventHubPath",
+                              "value": "<string>",
+                              "description": "(Required) The path to the event hub."
+                            },
+                            {
+                              "id": "4b98f08b-fc50-4850-a586-4d81430f135c",
+                              "key": "publisherId",
+                              "value": "<string>",
+                              "description": "(Required) The name of the publisher."
+                            }
+                          ]
+                        },
+                        "description": "Sends a new event to an Event Hub with a specified publisher ID. This enables publisher identity tracking and publisher policy enforcement on the event hub."
+                      },
+                      "response": [
+                        {
+                          "id": "1f7903b9-ac2c-46d5-a210-89ac2bef4c43",
+                          "name": "Event with publisher ID sent successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                                "key": "x-ms-retrypolicy",
+                                "value": "NoRetry"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:eventHubPath/publishers/:publisherId/messages?api-version=2014-01&timeout=60",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":eventHubPath",
+                                "publishers",
+                                ":publisherId",
+                                "messages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for the request.",
+                                  "key": "api-version",
+                                  "value": "2014-01"
+                                },
+                                {
+                                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                                  "key": "timeout",
+                                  "value": "60"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "eventHubPath"
+                                },
+                                {
+                                  "key": "publisherId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                          "createdAt": "2026-06-05T15:11:11.000Z",
+                          "updatedAt": "2026-06-05T15:11:11.000Z",
+                          "uid": "35240-1f7903b9-ac2c-46d5-a210-89ac2bef4c43"
+                        },
+                        {
+                          "id": "58937ec1-ea9f-4ff7-952e-88b46fb7d246",
+                          "name": "Authorization failure.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                                "key": "x-ms-retrypolicy",
+                                "value": "NoRetry"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:eventHubPath/publishers/:publisherId/messages?api-version=2014-01&timeout=60",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":eventHubPath",
+                                "publishers",
+                                ":publisherId",
+                                "messages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for the request.",
+                                  "key": "api-version",
+                                  "value": "2014-01"
+                                },
+                                {
+                                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                                  "key": "timeout",
+                                  "value": "60"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "eventHubPath"
+                                },
+                                {
+                                  "key": "publisherId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                          "createdAt": "2026-06-05T15:11:11.000Z",
+                          "updatedAt": "2026-06-05T15:11:11.000Z",
+                          "uid": "35240-58937ec1-ea9f-4ff7-952e-88b46fb7d246"
+                        },
+                        {
+                          "id": "83f8f0e1-d971-47fb-9a8f-8f46d8943a3d",
+                          "name": "Internal error.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                                "key": "x-ms-retrypolicy",
+                                "value": "NoRetry"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/xml"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pariaturd3e\": 24869076.870593786,\n  \"cupidatat_92\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:eventHubPath/publishers/:publisherId/messages?api-version=2014-01&timeout=60",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":eventHubPath",
+                                "publishers",
+                                ":publisherId",
+                                "messages"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The API version to use for the request.",
+                                  "key": "api-version",
+                                  "value": "2014-01"
+                                },
+                                {
+                                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.",
+                                  "key": "timeout",
+                                  "value": "60"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "eventHubPath"
+                                },
+                                {
+                                  "key": "publisherId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "xml",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/xml"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+                          "createdAt": "2026-06-05T15:11:11.000Z",
+                          "updatedAt": "2026-06-05T15:11:11.000Z",
+                          "uid": "35240-83f8f0e1-d971-47fb-9a8f-8f46d8943a3d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:11:11.000Z",
+                      "updatedAt": "2026-06-05T15:11:11.000Z",
+                      "uid": "35240-f3964ba1-e03b-4c44-b74a-4b677e200ecb"
+                    }
+                  ],
+                  "id": "04ee7b26-c048-4851-bb32-f396db248bc4",
+                  "createdAt": "2026-06-05T15:11:11.000Z",
+                  "updatedAt": "2026-06-05T15:11:11.000Z",
+                  "uid": "35240-04ee7b26-c048-4851-bb32-f396db248bc4"
+                }
+              ],
+              "id": "58a2a7b8-34f0-4951-b53b-60384fda01ab",
+              "createdAt": "2026-06-05T15:11:11.000Z",
+              "updatedAt": "2026-06-05T15:11:11.000Z",
+              "uid": "35240-58a2a7b8-34f0-4951-b53b-60384fda01ab"
+            }
+          ],
+          "id": "b84f1749-386a-46ce-967d-dc45e9fe70f6",
+          "createdAt": "2026-06-05T15:11:11.000Z",
+          "updatedAt": "2026-06-05T15:11:11.000Z",
+          "uid": "35240-b84f1749-386a-46ce-967d-dc45e9fe70f6"
+        }
+      ],
+      "id": "eca1f9cf-89d7-440d-ad16-6cd8d7eec5b5",
+      "createdAt": "2026-06-05T15:11:11.000Z",
+      "updatedAt": "2026-06-05T15:11:11.000Z",
+      "uid": "35240-eca1f9cf-89d7-440d-ad16-6cd8d7eec5b5"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "namespaceName",
+      "value": "my-namespace"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{namespaceName}}.servicebus.windows.net"
+    }
+  ]
+}
