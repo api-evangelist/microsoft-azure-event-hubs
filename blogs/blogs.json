@@ -2,11 +2,18 @@
   "repo": "microsoft-azure-event-hubs",
   "feeds": [
     {
-      "source": "https://techcommunity.microsoft.com/t5/messaging-on-azure-and-net/bg-p/MessagingonAzureBlog/rss",
-      "feed_url": "https://techcommunity.microsoft.com/t5/messaging-on-azure-and-net/bg-p/MessagingonAzureBlog/rss",
+      "source": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=MessagingonAzureBlog",
+      "feed_url": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=MessagingonAzureBlog",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "feed"
+    },
+    {
+      "source": "https://status.azure.com/feed/",
+      "feed_url": "https://status.azure.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     },
     {
       "source": "https://status.azure.com/",
@@ -16,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
+  "fetched": "2026-06-27T12:03:07Z",
   "post_count": 1
 }

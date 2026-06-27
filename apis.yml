@@ -92,45 +92,30 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/azure-event-hubs/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/microsoft-azure-event-hubs-configure-disaster-recovery-pairing-workflow.yml
-        name: Microsoft Azure Event Hubs Configure Geo-Disaster Recovery Pairing
-        summary: >-
-          Create a Geo-DR alias pairing a primary namespace to a secondary, then poll the configuration until
-          replication provisioning succeeds.
-      - url: arazzo/microsoft-azure-event-hubs-configure-event-hub-capture-workflow.yml
-        name: Microsoft Azure Event Hubs Configure Event Hub Capture to Blob Storage
-        summary: >-
-          Create an event hub with Avro capture enabled to an Azure Blob container, then read it back to confirm capture
-          is active.
-      - url: arazzo/microsoft-azure-event-hubs-create-event-hub-with-consumer-group-workflow.yml
-        name: Microsoft Azure Event Hubs Create an Event Hub with a Consumer Group
-        summary: Create an event hub in an existing namespace, add a consumer group, and confirm the consumer group is listed.
-      - url: arazzo/microsoft-azure-event-hubs-lock-down-namespace-network-workflow.yml
-        name: Microsoft Azure Event Hubs Lock Down a Namespace Network
-        summary: >-
-          Apply a default-deny network rule set with an IP allow rule to a namespace, then read it back to confirm the
-          deny posture.
-      - url: arazzo/microsoft-azure-event-hubs-provision-authorization-rule-and-keys-workflow.yml
-        name: Microsoft Azure Event Hubs Provision an Authorization Rule and Retrieve Keys
-        summary: >-
-          Create a namespace shared access authorization rule with the requested rights, then fetch its connection
-          strings and keys.
-      - url: arazzo/microsoft-azure-event-hubs-provision-namespace-with-event-hub-workflow.yml
-        name: Microsoft Azure Event Hubs Provision a Namespace with an Event Hub
-        summary: Create an Event Hubs namespace, wait for it to finish provisioning, then create an event hub inside it.
-      - url: arazzo/microsoft-azure-event-hubs-register-schema-group-workflow.yml
-        name: Microsoft Azure Event Hubs Register a Schema Registry Group
-        summary: >-
-          Create an Avro schema group in a namespace's schema registry with a compatibility mode, then read it back to
-          confirm registration.
-      - url: arazzo/microsoft-azure-event-hubs-rotate-namespace-keys-workflow.yml
-        name: Microsoft Azure Event Hubs Rotate Namespace Keys
-        summary: >-
-          Capture the current connection strings for an authorization rule, regenerate one of the keys, and read back
-          the new credentials.
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-configure-disaster-recovery-pairing-workflow.yml
+    name: Microsoft Azure Event Hubs Configure Geo-Disaster Recovery Pairing
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-configure-event-hub-capture-workflow.yml
+    name: Microsoft Azure Event Hubs Configure Event Hub Capture to Blob Storage
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-create-event-hub-with-consumer-group-workflow.yml
+    name: Microsoft Azure Event Hubs Create an Event Hub with a Consumer Group
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-lock-down-namespace-network-workflow.yml
+    name: Microsoft Azure Event Hubs Lock Down a Namespace Network
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-provision-authorization-rule-and-keys-workflow.yml
+    name: Microsoft Azure Event Hubs Provision an Authorization Rule and Retrieve Keys
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-provision-namespace-with-event-hub-workflow.yml
+    name: Microsoft Azure Event Hubs Provision a Namespace with an Event Hub
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-register-schema-group-workflow.yml
+    name: Microsoft Azure Event Hubs Register a Schema Registry Group
+  - type: Arazzo
+    url: arazzo/microsoft-azure-event-hubs-rotate-namespace-keys-workflow.yml
+    name: Microsoft Azure Event Hubs Rotate Namespace Keys
   - type: Portal
     url: https://portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/Microsoft.EventHub%2Fnamespaces
   - type: GettingStarted
@@ -153,7 +138,7 @@ common:
     url: https://techcommunity.microsoft.com/t5/messaging-on-azure-and-net/bg-p/MessagingonAzureBlog
   - type: Documentation
     url: https://learn.microsoft.com/en-us/azure/event-hubs/
-  - type: Quotas
+  - type: RateLimits
     url: https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-quotas
   - type: TermsOfService
     url: https://azure.microsoft.com/en-us/support/legal/
@@ -167,23 +152,23 @@ common:
     url: https://azure.microsoft.com/en-us/services/event-hubs/
   - type: Login
     url: https://portal.azure.com/
-  - type: SignUp
+  - type: Signup
     url: https://azure.microsoft.com/en-us/free/
   - type: Community
     url: https://learn.microsoft.com/en-us/answers/tags/165/azure-event-hubs/
   - type: Security
     url: https://learn.microsoft.com/en-us/azure/event-hubs/network-security
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/azure-event-hubs-namespace.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/azure-event-hubs-eventhub.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/azure-event-hubs-consumer-group.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/azure-event-hubs-event-data.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/azure-event-hubs-schema-group.json
-  - type: JSON-LD Context
+  - type: JSONLDContext
     url: json-ld/azure-event-hubs-context.jsonld
 maintainers:
   - FN: Kin Lane
