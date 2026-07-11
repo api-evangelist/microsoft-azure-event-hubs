@@ -90,6 +90,8 @@ apis:
       - type: GitHub
         url: https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/eventhub
 common:
+  - type: OAuthScopes
+    url: scopes/microsoft-azure-event-hubs-scopes.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/azure-event-hubs/overview
   - type: Arazzo
