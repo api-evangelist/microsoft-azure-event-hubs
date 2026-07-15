@@ -90,6 +90,8 @@ apis:
       - type: GitHub
         url: https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/eventhub
 common:
+  - type: AgenticAccess
+    url: agentic-access/microsoft-azure-event-hubs-agentic-access.yml
   - type: DomainSecurity
     url: security/microsoft-azure-event-hubs-domain-security.yml
   - type: Authentication
