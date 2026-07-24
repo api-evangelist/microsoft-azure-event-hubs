@@ -1,0 +1,722 @@
+openapi: 3.1.0
+info:
+  title: Azure Event Hubs Data Plane REST Authorization Rules Namespaces API
+  description: The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.
+  version: 2014-01
+  contact:
+    name: Microsoft Azure Support
+    url: https://azure.microsoft.com/en-us/support/
+  license:
+    name: Microsoft Azure Terms of Service
+    url: https://azure.microsoft.com/en-us/support/legal/
+  x-logo:
+    url: https://azure.microsoft.com/svghandler/event-hubs/
+servers:
+- url: https://{namespaceName}.servicebus.windows.net
+  description: Azure Event Hubs Service Endpoint
+  variables:
+    namespaceName:
+      description: The Event Hubs namespace name.
+      default: my-namespace
+security:
+- sas_token: []
+- bearer_token: []
+tags:
+- name: Namespaces
+  description: Operations for managing Event Hubs namespaces.
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.EventHub/namespaces:
+    get:
+      operationId: Namespaces_List
+      summary: Azure Event Hubs List all namespaces
+      description: Lists all the available Namespaces within a subscription, irrespective of the resource groups.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: Namespaces returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EHNamespaceListResult'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces:
+    get:
+      operationId: Namespaces_ListByResourceGroup
+      summary: Azure Event Hubs List namespaces by resource group
+      description: Lists the available Namespaces within a resource group.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: Namespaces returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EHNamespaceListResult'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}:
+    put:
+      operationId: Namespaces_CreateOrUpdate
+      summary: Azure Event Hubs Create or update a namespace
+      description: Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        description: Parameters for creating a namespace resource.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EHNamespace'
+      responses:
+        '200':
+          description: Namespace successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EHNamespace'
+        '201':
+          description: Namespace create request accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EHNamespace'
+        '202':
+          description: Namespace create or update request accepted.
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: Namespaces_Get
+      summary: Azure Event Hubs Get a namespace
+      description: Gets the description of the specified namespace.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: Namespace returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EHNamespace'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: Namespaces_Update
+      summary: Azure Event Hubs Update a namespace
+      description: Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        description: Parameters for updating a namespace resource.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EHNamespace'
+      responses:
+        '200':
+          description: Namespace successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EHNamespace'
+        '201':
+          description: Namespace update request accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EHNamespace'
+        '202':
+          description: Namespace update request accepted.
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: Namespaces_Delete
+      summary: Azure Event Hubs Delete a namespace
+      description: Deletes an existing namespace. This operation also removes all associated resources under the namespace.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: Namespace successfully deleted.
+        '202':
+          description: Namespace delete request accepted.
+        '204':
+          description: No content.
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/networkRuleSets/default
+  : put:
+      operationId: Namespaces_CreateOrUpdateNetworkRuleSet
+      summary: Azure Event Hubs Create or update network rule set
+      description: Create or update NetworkRuleSet for a Namespace.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        description: The Namespace NetworkRuleSet.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NetworkRuleSet'
+      responses:
+        '200':
+          description: Namespace NetworkRuleSet successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkRuleSet'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: Namespaces_GetNetworkRuleSet
+      summary: Azure Event Hubs Get network rule set
+      description: Gets NetworkRuleSet for a Namespace.
+      tags:
+      - Namespaces
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: Namespace NetworkRuleSet successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkRuleSet'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorAdditionalInfo:
+      type: object
+      description: The resource management error additional info.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The additional info type.
+        info:
+          type: object
+          readOnly: true
+          description: The additional info.
+    EHNamespaceListResult:
+      type: object
+      description: The response of the List Namespace operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/EHNamespace'
+          description: Result of the List Namespace operation.
+        nextLink:
+          type: string
+          description: Link to the next set of results. Not empty if Value contains incomplete list of namespaces.
+    Sku:
+      type: object
+      description: SKU parameters supplied to the create namespace operation.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of this SKU.
+          enum:
+          - Basic
+          - Standard
+          - Premium
+        tier:
+          type: string
+          description: The billing tier of this particular SKU.
+          enum:
+          - Basic
+          - Standard
+          - Premium
+        capacity:
+          type: integer
+          format: int32
+          minimum: 0
+          description: The Event Hubs throughput units for Basic or Standard tiers, where value should be 0 to 20 throughput units. The Event Hubs premium units for Premium tier, where value should be 0 to 10 premium units.
+    ErrorDetail:
+      type: object
+      description: The error detail.
+      properties:
+        code:
+          type: string
+          readOnly: true
+          description: The error code.
+        message:
+          type: string
+          readOnly: true
+          description: The error message.
+        target:
+          type: string
+          readOnly: true
+          description: The error target.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          description: The error details.
+        additionalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorAdditionalInfo'
+          readOnly: true
+          description: The error additional info.
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    NetworkRuleSet:
+      type: object
+      description: Description of topic resource.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Fully qualified resource ID for the resource.
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource.
+        type:
+          type: string
+          readOnly: true
+          description: The type of the resource.
+        properties:
+          type: object
+          properties:
+            trustedServiceAccessEnabled:
+              type: boolean
+              description: Value that indicates whether Trusted Service Access is Enabled or not.
+            defaultAction:
+              type: string
+              description: Default Action for Network Rule Set.
+              enum:
+              - Allow
+              - Deny
+            virtualNetworkRules:
+              type: array
+              items:
+                type: object
+                properties:
+                  subnet:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Resource ID of Virtual Network Subnet.
+                  ignoreMissingVnetServiceEndpoint:
+                    type: boolean
+                    description: Value that indicates whether to ignore missing VNet Service Endpoint.
+              description: List VirtualNetwork Rules.
+            ipRules:
+              type: array
+              items:
+                type: object
+                properties:
+                  ipMask:
+                    type: string
+                    description: IP Mask.
+                  action:
+                    type: string
+                    description: The IP Filter Action.
+                    enum:
+                    - Allow
+              description: List of IpRules.
+            publicNetworkAccess:
+              type: string
+              description: This determines if traffic is allowed over public network. By default it is enabled.
+              enum:
+              - Enabled
+              - Disabled
+              - SecuredByPerimeter
+              default: Enabled
+        systemData:
+          $ref: '#/components/schemas/SystemData'
+    Identity:
+      type: object
+      description: Properties to configure Identity for the namespace.
+      properties:
+        principalId:
+          type: string
+          readOnly: true
+          description: ObjectId from the KeyVault.
+        tenantId:
+          type: string
+          readOnly: true
+          description: TenantId from the KeyVault.
+        type:
+          type: string
+          description: Type of managed service identity.
+          enum:
+          - SystemAssigned
+          - UserAssigned
+          - SystemAssigned, UserAssigned
+          - None
+        userAssignedIdentities:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/UserAssignedIdentity'
+          description: Properties for User Assigned Identities.
+    KeyVaultProperties:
+      type: object
+      description: Properties of KeyVault.
+      properties:
+        keyName:
+          type: string
+          description: Name of the Key from KeyVault.
+        keyVaultUri:
+          type: string
+          description: Uri of KeyVault.
+        keyVersion:
+          type: string
+          description: Key Version.
+        identity:
+          type: object
+          properties:
+            userAssignedIdentity:
+              type: string
+              description: ARM ID of user Identity selected for encryption.
+    UserAssignedIdentity:
+      type: object
+      description: Recognized Dictionary value.
+      properties:
+        clientId:
+          type: string
+          readOnly: true
+          description: Client Id of user assigned identity.
+        principalId:
+          type: string
+          readOnly: true
+          description: Principal Id of user assigned identity.
+    SystemData:
+      type: object
+      description: Metadata pertaining to creation and last modification of the resource.
+      properties:
+        createdBy:
+          type: string
+          description: The identity that created the resource.
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
+    Encryption:
+      type: object
+      description: Properties to configure Encryption.
+      properties:
+        keySource:
+          type: string
+          description: Enumerates the possible value of keySource for Encryption.
+          enum:
+          - Microsoft.KeyVault
+          default: Microsoft.KeyVault
+        keyVaultProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyVaultProperties'
+          description: Properties of KeyVault.
+        requireInfrastructureEncryption:
+          type: boolean
+          description: Enable Infrastructure Encryption (Double Encryption).
+    PrivateEndpointConnection:
+      type: object
+      description: Properties of the PrivateEndpointConnection.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Fully qualified resource ID for the resource.
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource.
+        type:
+          type: string
+          readOnly: true
+          description: The type of the resource.
+        location:
+          type: string
+          readOnly: true
+          description: The geo-location where the resource lives.
+        properties:
+          type: object
+          properties:
+            privateEndpoint:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ARM identifier for Private Endpoint.
+            privateLinkServiceConnectionState:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Status of the connection.
+                  enum:
+                  - Pending
+                  - Approved
+                  - Rejected
+                  - Disconnected
+                description:
+                  type: string
+                  description: Description of the connection state.
+            provisioningState:
+              type: string
+              description: Provisioning state of the Private Endpoint Connection.
+              enum:
+              - Creating
+              - Updating
+              - Deleting
+              - Succeeded
+              - Canceled
+              - Failed
+        systemData:
+          $ref: '#/components/schemas/SystemData'
+    EHNamespace:
+      type: object
+      description: Single Namespace item in List or Get Operation.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Fully qualified resource ID for the resource.
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource.
+        type:
+          type: string
+          readOnly: true
+          description: The type of the resource.
+        location:
+          type: string
+          description: Resource location.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Resource tags.
+        sku:
+          $ref: '#/components/schemas/Sku'
+        identity:
+          $ref: '#/components/schemas/Identity'
+        properties:
+          type: object
+          properties:
+            provisioningState:
+              type: string
+              readOnly: true
+              description: Provisioning state of the Namespace.
+            status:
+              type: string
+              readOnly: true
+              description: Status of the Namespace.
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              description: The time the Namespace was created.
+            updatedAt:
+              type: string
+              format: date-time
+              readOnly: true
+              description: The time the Namespace was updated.
+            serviceBusEndpoint:
+              type: string
+              readOnly: true
+              description: Endpoint you can use to perform Service Bus operations.
+            metricId:
+              type: string
+              readOnly: true
+              description: Identifier for Azure Insights metrics.
+            clusterArmId:
+              type: string
+              description: Cluster ARM ID of the Namespace.
+            isAutoInflateEnabled:
+              type: boolean
+              description: Value that indicates whether AutoInflate is enabled for eventhub namespace.
+            maximumThroughputUnits:
+              type: integer
+              format: int32
+              minimum: 0
+              description: Upper limit of throughput units when AutoInflate is enabled, value should be within 0 to 20 throughput units.
+            kafkaEnabled:
+              type: boolean
+              description: Value that indicates whether Kafka is enabled for eventhub namespace.
+            zoneRedundant:
+              type: boolean
+              description: Enabling this property creates a Standard Event Hubs Namespace in regions supported availability zones.
+            disableLocalAuth:
+              type: boolean
+              description: This property disables SAS authentication for the Event Hubs namespace.
+            minimumTlsVersion:
+              type: string
+              description: The minimum TLS version for the cluster to support, e.g. 1.2.
+              enum:
+              - '1.0'
+              - '1.1'
+              - '1.2'
+            publicNetworkAccess:
+              type: string
+              description: This determines if traffic is allowed over public network. By default it is enabled.
+              enum:
+              - Enabled
+              - Disabled
+              - SecuredByPerimeter
+              default: Enabled
+            encryption:
+              $ref: '#/components/schemas/Encryption'
+            privateEndpointConnections:
+              type: array
+              items:
+                $ref: '#/components/schemas/PrivateEndpointConnection'
+              description: List of private endpoint connections.
+            alternateName:
+              type: string
+              description: Alternate name specified when alias and namespace names are same.
+        systemData:
+          $ref: '#/components/schemas/SystemData'
+  parameters:
+    ResourceGroupNameParameter:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: Name of the resource group within the Azure subscription.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 90
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
+    NamespaceNameParameter:
+      name: namespaceName
+      in: path
+      required: true
+      description: The Namespace name.
+      schema:
+        type: string
+        minLength: 6
+        maxLength: 50
+        pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+  securitySchemes:
+    sas_token:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Shared Access Signature token. Format: SharedAccessSignature sr={namespace}.servicebus.windows.net&sig={signature}&se={expiry}&skn={keyName}'
+    bearer_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Azure Active Directory (Azure AD) JSON Web Token (JWT). Format: Bearer {Azure AD JWT token}'

@@ -1,0 +1,345 @@
+openapi: 3.1.0
+info:
+  title: Azure Event Hubs Data Plane REST Authorization Rules Consumer Groups API
+  description: The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.
+  version: 2014-01
+  contact:
+    name: Microsoft Azure Support
+    url: https://azure.microsoft.com/en-us/support/
+  license:
+    name: Microsoft Azure Terms of Service
+    url: https://azure.microsoft.com/en-us/support/legal/
+  x-logo:
+    url: https://azure.microsoft.com/svghandler/event-hubs/
+servers:
+- url: https://{namespaceName}.servicebus.windows.net
+  description: Azure Event Hubs Service Endpoint
+  variables:
+    namespaceName:
+      description: The Event Hubs namespace name.
+      default: my-namespace
+security:
+- sas_token: []
+- bearer_token: []
+tags:
+- name: Consumer Groups
+  description: Operations for managing consumer groups within an event hub.
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups
+  : get:
+      operationId: ConsumerGroups_ListByEventHub
+      summary: Azure Event Hubs List consumer groups
+      description: Gets all the consumer groups in a Namespace. An empty feed is returned if no consumer group exists in the Namespace.
+      tags:
+      - Consumer Groups
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/EventHubNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - name: $skip
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 1000
+      - name: $top
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+      responses:
+        '200':
+          description: Successfully retrieved the list of consumer groups.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerGroupListResult'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/consumergroups/{consumerGroupName}
+  : put:
+      operationId: ConsumerGroups_CreateOrUpdate
+      summary: Azure Event Hubs Create or update a consumer group
+      description: Creates or updates an Event Hubs consumer group as a nested resource within a Namespace.
+      tags:
+      - Consumer Groups
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/EventHubNameParameter'
+      - $ref: '#/components/parameters/ConsumerGroupNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        description: Parameters supplied to create or update a consumer group resource.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerGroup'
+      responses:
+        '200':
+          description: Consumer group successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerGroup'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      operationId: ConsumerGroups_Get
+      summary: Azure Event Hubs Get a consumer group
+      description: Gets a description for the specified consumer group.
+      tags:
+      - Consumer Groups
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/EventHubNameParameter'
+      - $ref: '#/components/parameters/ConsumerGroupNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: Successfully retrieved the consumer group description.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerGroup'
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: ConsumerGroups_Delete
+      summary: Azure Event Hubs Delete a consumer group
+      description: Deletes a consumer group from the specified Event Hub and resource group.
+      tags:
+      - Consumer Groups
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/NamespaceNameParameter'
+      - $ref: '#/components/parameters/EventHubNameParameter'
+      - $ref: '#/components/parameters/ConsumerGroupNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: Consumer group successfully deleted.
+        '204':
+          description: No content.
+        default:
+          description: Event Hubs error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorAdditionalInfo:
+      type: object
+      description: The resource management error additional info.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The additional info type.
+        info:
+          type: object
+          readOnly: true
+          description: The additional info.
+    ErrorDetail:
+      type: object
+      description: The error detail.
+      properties:
+        code:
+          type: string
+          readOnly: true
+          description: The error code.
+        message:
+          type: string
+          readOnly: true
+          description: The error message.
+        target:
+          type: string
+          readOnly: true
+          description: The error target.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          description: The error details.
+        additionalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorAdditionalInfo'
+          readOnly: true
+          description: The error additional info.
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    ConsumerGroup:
+      type: object
+      description: Single item in List or Get Consumer group operation.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Fully qualified resource ID for the resource.
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource.
+        type:
+          type: string
+          readOnly: true
+          description: The type of the resource.
+        location:
+          type: string
+          readOnly: true
+          description: The geo-location where the resource lives.
+        properties:
+          type: object
+          properties:
+            createdAt:
+              type: string
+              format: date-time
+              readOnly: true
+              description: Exact time the message was created.
+            updatedAt:
+              type: string
+              format: date-time
+              readOnly: true
+              description: The exact time the message was updated.
+            userMetadata:
+              type: string
+              description: User Metadata is a placeholder to store user-defined string data with maximum length 1024.
+        systemData:
+          $ref: '#/components/schemas/SystemData'
+    SystemData:
+      type: object
+      description: Metadata pertaining to creation and last modification of the resource.
+      properties:
+        createdBy:
+          type: string
+          description: The identity that created the resource.
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
+    ConsumerGroupListResult:
+      type: object
+      description: The result of the List Consumer Groups operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsumerGroup'
+          description: Result of the List Consumer Groups operation.
+        nextLink:
+          type: string
+          description: Link to the next set of results. Not empty if Value contains incomplete list of Consumer Groups.
+  parameters:
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
+    ResourceGroupNameParameter:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: Name of the resource group within the Azure subscription.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 90
+    EventHubNameParameter:
+      name: eventHubName
+      in: path
+      required: true
+      description: The Event Hub name.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 256
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
+    NamespaceNameParameter:
+      name: namespaceName
+      in: path
+      required: true
+      description: The Namespace name.
+      schema:
+        type: string
+        minLength: 6
+        maxLength: 50
+        pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+    ConsumerGroupNameParameter:
+      name: consumerGroupName
+      in: path
+      required: true
+      description: The consumer group name.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 50
+  securitySchemes:
+    sas_token:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Shared Access Signature token. Format: SharedAccessSignature sr={namespace}.servicebus.windows.net&sig={signature}&se={expiry}&skn={keyName}'
+    bearer_token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Azure Active Directory (Azure AD) JSON Web Token (JWT). Format: Bearer {Azure AD JWT token}'
