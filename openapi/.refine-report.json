@@ -1,0 +1,28 @@
+{
+  "provider": "microsoft-azure-event-hubs",
+  "sources": [
+    "microsoft-azure-event-hubs-authorization-rules-api-openapi.yml",
+    "microsoft-azure-event-hubs-consumer-groups-api-openapi.yml",
+    "microsoft-azure-event-hubs-disaster-recovery-configs-api-openapi.yml",
+    "microsoft-azure-event-hubs-event-hubs-api-openapi.yml",
+    "microsoft-azure-event-hubs-events-api-openapi.yml",
+    "microsoft-azure-event-hubs-namespaces-api-openapi.yml",
+    "microsoft-azure-event-hubs-operations-api-openapi.yml",
+    "microsoft-azure-event-hubs-schema-registry-api-openapi.yml"
+  ],
+  "outputs": [
+    "microsoft-azure-event-hubs-authorization-rules-api-openapi.yml",
+    "microsoft-azure-event-hubs-consumer-groups-api-openapi.yml",
+    "microsoft-azure-event-hubs-disaster-recovery-configs-api-openapi.yml",
+    "microsoft-azure-event-hubs-event-hubs-api-openapi.yml",
+    "microsoft-azure-event-hubs-events-api-openapi.yml",
+    "microsoft-azure-event-hubs-namespaces-api-openapi.yml",
+    "microsoft-azure-event-hubs-operations-api-openapi.yml",
+    "microsoft-azure-event-hubs-schema-registry-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
