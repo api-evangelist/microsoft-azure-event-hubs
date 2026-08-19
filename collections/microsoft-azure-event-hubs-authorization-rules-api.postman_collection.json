@@ -1,0 +1,1688 @@
+{
+  "item": [
+    {
+      "id": "ecaceac9-8483-45a2-850a-d972f1bc6d16",
+      "name": "Authorization Rules",
+      "description": {
+        "content": "Operations for managing authorization rules and access keys.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c438da90-24ab-4103-a9f3-70d04d8ec86f",
+          "name": "Azure Event Hubs List namespace authorization rules",
+          "request": {
+            "name": "Azure Event Hubs List namespace authorization rules",
+            "description": {
+              "content": "Gets a list of authorization rules for a Namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "authorizationRules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d802c75f-08d8-4a1c-a691-14833a5e3c9e",
+              "name": "Namespace authorization rules returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"rights\": [\n          \"Send\",\n          \"Manage\"\n        ]\n      },\n      \"systemData\": {\n        \"createdBy\": \"string\",\n        \"createdByType\": \"User\",\n        \"createdAt\": \"2026-03-04T01:03:40.915Z\",\n        \"lastModifiedBy\": \"string\",\n        \"lastModifiedByType\": \"User\",\n        \"lastModifiedAt\": \"1951-07-01T15:59:38.174Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"rights\": [\n          \"Listen\",\n          \"Manage\"\n        ]\n      },\n      \"systemData\": {\n        \"createdBy\": \"string\",\n        \"createdByType\": \"ManagedIdentity\",\n        \"createdAt\": \"2009-11-28T05:04:52.711Z\",\n        \"lastModifiedBy\": \"string\",\n        \"lastModifiedByType\": \"ManagedIdentity\",\n        \"lastModifiedAt\": \"2012-09-15T08:35:09.792Z\"\n      }\n    }\n  ],\n  \"nextLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74684a87-b7b9-42e9-ab27-a6cff9d5eec3",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe8b4833-5b41-4769-b592-8b60bac182c6",
+          "name": "Azure Event Hubs Create or update namespace authorization rule",
+          "request": {
+            "name": "Azure Event Hubs Create or update namespace authorization rule",
+            "description": {
+              "content": "Creates or updates an AuthorizationRule for a Namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "authorizationRules",
+                ":authorizationRuleName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authorizationRuleName",
+                  "description": "(Required) The authorization rule name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"rights\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"systemData\": {\n    \"createdBy\": \"<string>\",\n    \"createdByType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedBy\": \"<string>\",\n    \"lastModifiedByType\": \"<string>\",\n    \"lastModifiedAt\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "080f8bdb-42a8-43d9-a79e-69919943c679",
+              "name": "Namespace authorization rule created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"rights\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1975-07-09T14:06:24.188Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Key\",\n    \"lastModifiedAt\": \"1990-03-29T11:09:50.468Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"properties\": {\n    \"rights\": [\n      \"Listen\",\n      \"Manage\"\n    ]\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1987-12-14T23:42:44.950Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"User\",\n    \"lastModifiedAt\": \"2023-02-07T04:15:32.938Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "687ded02-a932-4adb-906f-701d044ab35a",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"rights\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1975-07-09T14:06:24.188Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Key\",\n    \"lastModifiedAt\": \"1990-03-29T11:09:50.468Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31567f76-70c3-4623-ba8b-beb4edb8c6e4",
+          "name": "Azure Event Hubs Get namespace authorization rule",
+          "request": {
+            "name": "Azure Event Hubs Get namespace authorization rule",
+            "description": {
+              "content": "Gets an AuthorizationRule for a Namespace by rule name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "authorizationRules",
+                ":authorizationRuleName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authorizationRuleName",
+                  "description": "(Required) The authorization rule name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8b3117a-dd3a-48fb-9739-d6d5a57dab35",
+              "name": "Namespace authorization rule returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"properties\": {\n    \"rights\": [\n      \"Listen\",\n      \"Manage\"\n    ]\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1987-12-14T23:42:44.950Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"User\",\n    \"lastModifiedAt\": \"2023-02-07T04:15:32.938Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30957615-dc67-4678-955e-b0bbcb9d2752",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04251c95-8d58-44e1-9b0f-cbe256715311",
+          "name": "Azure Event Hubs Delete namespace authorization rule",
+          "request": {
+            "name": "Azure Event Hubs Delete namespace authorization rule",
+            "description": {
+              "content": "Deletes an AuthorizationRule for a Namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "authorizationRules",
+                ":authorizationRuleName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authorizationRuleName",
+                  "description": "(Required) The authorization rule name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1c12341-8493-45d7-a3ea-3107137c788f",
+              "name": "Namespace authorization rule deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36ade426-79d2-41ed-a606-d7a564abce2d",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb2ce792-2dca-41f8-bd4d-2cf8301c5f78",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "867704de-b448-415c-ab86-101dd0169a1d",
+          "name": "Azure Event Hubs List namespace keys",
+          "request": {
+            "name": "Azure Event Hubs List namespace keys",
+            "description": {
+              "content": "Gets the primary and secondary connection strings for the Namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "authorizationRules",
+                ":authorizationRuleName",
+                "listKeys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authorizationRuleName",
+                  "description": "(Required) The authorization rule name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34bea60a-6603-40fd-a11d-0617b0e2e674",
+              "name": "Connection strings returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName",
+                    "listKeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"primaryConnectionString\": \"string\",\n  \"secondaryConnectionString\": \"string\",\n  \"aliasPrimaryConnectionString\": \"string\",\n  \"aliasSecondaryConnectionString\": \"string\",\n  \"primaryKey\": \"string\",\n  \"secondaryKey\": \"string\",\n  \"keyName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be78c33e-4a95-496a-8704-876654c45e3a",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName",
+                    "listKeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7107950c-b350-4d47-8ba3-e0ac4b7d2638",
+          "name": "Azure Event Hubs Regenerate namespace keys",
+          "request": {
+            "name": "Azure Event Hubs Regenerate namespace keys",
+            "description": {
+              "content": "Regenerates the primary or secondary connection strings for the specified Namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "authorizationRules",
+                ":authorizationRuleName",
+                "regenerateKeys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authorizationRuleName",
+                  "description": "(Required) The authorization rule name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keyType\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cfe04c93-3321-49ed-8526-093d4e92de63",
+              "name": "Authorization rule regenerated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName",
+                    "regenerateKeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyType\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"primaryConnectionString\": \"string\",\n  \"secondaryConnectionString\": \"string\",\n  \"aliasPrimaryConnectionString\": \"string\",\n  \"aliasSecondaryConnectionString\": \"string\",\n  \"primaryKey\": \"string\",\n  \"secondaryKey\": \"string\",\n  \"keyName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10213f33-85a1-4405-95ba-2eafefb38226",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "authorizationRules",
+                    ":authorizationRuleName",
+                    "regenerateKeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorizationRuleName",
+                      "description": "(Required) The authorization rule name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyType\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Event Hubs namespace name.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-namespace",
+      "key": "namespaceName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{namespaceName}}.servicebus.windows.net",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cb71346c-9550-42bb-9bdf-ea7eec1f360d",
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.\n\nContact Support:\n Name: Microsoft Azure Support",
+      "type": "text/plain"
+    }
+  }
+}

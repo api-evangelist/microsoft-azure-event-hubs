@@ -1,0 +1,286 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules API",
+    "version": "2014-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Event Hubs List namespace authorization rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/authorizationRules",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Gets a list of authorization rules for a Namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Get namespace authorization rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/authorizationRules/:authorizationRuleName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "authorizationRuleName",
+                "value": "",
+                "type": "path",
+                "description": "The authorization rule name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Gets an AuthorizationRule for a Namespace by rule name."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Create or update namespace authorization rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/authorizationRules/:authorizationRuleName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "authorizationRuleName",
+                "value": "",
+                "type": "path",
+                "description": "The authorization rule name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates an AuthorizationRule for a Namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Delete namespace authorization rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/authorizationRules/:authorizationRuleName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "authorizationRuleName",
+                "value": "",
+                "type": "path",
+                "description": "The authorization rule name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Deletes an AuthorizationRule for a Namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs List namespace keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/authorizationRules/:authorizationRuleName/listKeys",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "authorizationRuleName",
+                "value": "",
+                "type": "path",
+                "description": "The authorization rule name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Gets the primary and secondary connection strings for the Namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Regenerate namespace keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/authorizationRules/:authorizationRuleName/regenerateKeys",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "authorizationRuleName",
+                "value": "",
+                "type": "path",
+                "description": "The authorization rule name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Regenerates the primary or secondary connection strings for the specified Namespace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

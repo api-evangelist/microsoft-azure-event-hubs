@@ -1,0 +1,282 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules Disaster Recovery Configs API",
+    "version": "2014-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Disaster Recovery Configs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Event Hubs List disaster recovery configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/disasterRecoveryConfigs",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Gets all Alias (Disaster Recovery configurations)."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Get a disaster recovery configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/disasterRecoveryConfigs/:alias",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The Disaster Recovery configuration name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Retrieves Alias (Disaster Recovery configuration) for primary or secondary namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Create or update a disaster recovery configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/disasterRecoveryConfigs/:alias",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The Disaster Recovery configuration name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a new Alias (Disaster Recovery configuration)."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Delete a disaster recovery configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/disasterRecoveryConfigs/:alias",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The Disaster Recovery configuration name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Deletes an Alias (Disaster Recovery configuration)."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Break disaster recovery pairing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/disasterRecoveryConfigs/:alias/breakPairing",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The Disaster Recovery configuration name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "This operation disables the Disaster Recovery and stops replicating changes from primary to secondary namespaces."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Initiate disaster recovery failover",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/disasterRecoveryConfigs/:alias/failover",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path",
+                "description": "The Disaster Recovery configuration name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Invokes GEO DR failover and reconfigures the alias to point to the secondary namespace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

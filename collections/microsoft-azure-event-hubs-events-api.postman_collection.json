@@ -1,0 +1,1414 @@
+{
+  "item": [
+    {
+      "id": "dabfb2e0-99ce-474c-93cb-4d901f3b5760",
+      "name": "Events",
+      "description": {
+        "content": "Operations for sending events to Azure Event Hubs, including single events, batch events, partition-specific events, and events with publisher identity.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a77e162d-280b-42a1-a890-9469c1168420",
+          "name": "Azure Event Hubs Send event",
+          "request": {
+            "name": "Azure Event Hubs Send event",
+            "description": {
+              "content": "Sends a new event to an event hub. The event body can be any content type. Custom user properties can be set via the UserProperties header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":eventHubPath",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2014-01",
+                  "description": "(Required) The API version to use for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "60",
+                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventHubPath",
+                  "description": "(Required) The path to the event hub."
+                },
+                {
+                  "description": "The Event Hubs namespace name.",
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                "key": "x-ms-retrypolicy",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 5452\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "adda3747-e4bf-46ab-82fe-2ea5f4949322",
+              "name": "Event sent successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "9f85ad9c-9342-4d3e-9b02-e7896635540d",
+              "name": "Authorization failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "eb47d323-ae6b-4a82-a212-ad0638902931",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4590592b-8656-45ef-82bb-77c8bf8d5001",
+          "name": "Azure Event Hubs Send batch events",
+          "request": {
+            "name": "Azure Event Hubs Send batch events",
+            "description": {
+              "content": "Sends a new batched message event to an Event Hub. Batching reduces the number of messages that are transmitted by merging information from multiple messages into a single batch of messages. The message body must be a valid JSON array payload following the convention to describe each message. The Content-Type header must be set to application/vnd.microsoft.servicebus.json.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":eventHubPath",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "batch",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2014-01",
+                  "description": "(Required) The API version to use for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "60",
+                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventHubPath",
+                  "description": "(Required) The path to the event hub."
+                },
+                {
+                  "description": "The Event Hubs namespace name.",
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                "key": "x-ms-retrypolicy",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.microsoft.servicebus.json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  },\n  {\n    \"Body\": \"<string>\",\n    \"UserProperties\": {\n      \"key_0\": \"<string>\"\n    },\n    \"BrokerProperties\": {\n      \"PartitionKey\": \"<string>\",\n      \"Label\": \"<string>\",\n      \"MessageId\": \"<string>\",\n      \"CorrelationId\": \"<string>\",\n      \"SessionId\": \"<string>\",\n      \"ReplyTo\": \"<string>\"\n    }\n  }\n]"
+            }
+          },
+          "response": [
+            {
+              "id": "30487e7f-3b28-4339-9f1c-59c38df6ed3a",
+              "name": "Batch events sent successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"Body\": \"Message1\",\n    \"UserProperties\": {\n      \"Alert\": \"Strong Wind\"\n    }\n  },\n  {\n    \"Body\": \"Message2\"\n  },\n  {\n    \"Body\": \"Message3\"\n  }\n]"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "37eb4da8-6ad6-4d3f-a7ba-937e150b7750",
+              "name": "Authorization failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"Body\": \"Message1\",\n    \"UserProperties\": {\n      \"Alert\": \"Strong Wind\"\n    }\n  },\n  {\n    \"Body\": \"Message2\"\n  },\n  {\n    \"Body\": \"Message3\"\n  }\n]"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "2c29f9fc-0536-434b-b2e9-5f41c32b762f",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"Body\": \"Message1\",\n    \"UserProperties\": {\n      \"Alert\": \"Strong Wind\"\n    }\n  },\n  {\n    \"Body\": \"Message2\"\n  },\n  {\n    \"Body\": \"Message3\"\n  }\n]"
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de71641c-9223-4eed-9000-b89df35aa38a",
+          "name": "Azure Event Hubs Send partition event",
+          "request": {
+            "name": "Azure Event Hubs Send partition event",
+            "description": {
+              "content": "Sends a new event to a specified partition in an Event Hub. This allows you to target a specific partition for the event rather than letting Event Hubs distribute it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":eventHubPath",
+                "partitions",
+                ":partitionId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2014-01",
+                  "description": "(Required) The API version to use for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "60",
+                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventHubPath",
+                  "description": "(Required) The path to the event hub."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partitionId",
+                  "description": "(Required) The ID of a partition on an event hub."
+                },
+                {
+                  "description": "The Event Hubs namespace name.",
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                "key": "x-ms-retrypolicy",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 5452\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0499891e-27a2-424a-b30c-66978c3c3e9d",
+              "name": "Partition event sent successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "partitions",
+                    ":partitionId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partitionId",
+                      "description": "(Required) The ID of a partition on an event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "255134fc-0f90-44c7-bf8d-c9a55185643c",
+              "name": "Authorization failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "partitions",
+                    ":partitionId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partitionId",
+                      "description": "(Required) The ID of a partition on an event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "7e28d528-6aaf-4993-8749-bfac5cb10676",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "partitions",
+                    ":partitionId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partitionId",
+                      "description": "(Required) The ID of a partition on an event hub."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89c7f1ef-b58d-4d5d-b01d-500bd2451d3f",
+          "name": "Azure Event Hubs Send event with publisher ID",
+          "request": {
+            "name": "Azure Event Hubs Send event with publisher ID",
+            "description": {
+              "content": "Sends a new event to an Event Hub with a specified publisher ID. This enables publisher identity tracking and publisher policy enforcement on the event hub.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":eventHubPath",
+                "publishers",
+                ":publisherId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2014-01",
+                  "description": "(Required) The API version to use for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "60",
+                  "description": "Timeout for the REST operation in seconds. The value is between 1 and 120 seconds."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventHubPath",
+                  "description": "(Required) The path to the event hub."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publisherId",
+                  "description": "(Required) The name of the publisher."
+                },
+                {
+                  "description": "The Event Hubs namespace name.",
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                "key": "x-ms-retrypolicy",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 5452\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8279a1b-40c6-4da4-914e-59f229d7f699",
+              "name": "Event with publisher ID sent successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "publishers",
+                    ":publisherId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publisherId",
+                      "description": "(Required) The name of the publisher."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "a37b381d-f790-4378-9ad9-f70a181dba43",
+              "name": "Authorization failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "publishers",
+                    ":publisherId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publisherId",
+                      "description": "(Required) The name of the publisher."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "3492e851-8e63-425d-9d38-6b77a58feb4b",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":eventHubPath",
+                    "publishers",
+                    ":publisherId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2014-01"
+                    },
+                    {
+                      "key": "timeout",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventHubPath",
+                      "description": "(Required) The path to the event hub."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publisherId",
+                      "description": "(Required) The name of the publisher."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to NoRetry to disable automatic retry on send operations when transient errors occur.",
+                    "key": "x-ms-retrypolicy",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 7388.69022397333,\n  \"key_1\": 8600,\n  \"key_2\": 8967.451510786204\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(integer)</code>\n  <detail>(string)</detail>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Event Hubs namespace name.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-namespace",
+      "key": "namespaceName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{namespaceName}}.servicebus.windows.net",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c08a1f8-bea4-4b82-8727-420169308ed0",
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.\n\nContact Support:\n Name: Microsoft Azure Support",
+      "type": "text/plain"
+    }
+  }
+}

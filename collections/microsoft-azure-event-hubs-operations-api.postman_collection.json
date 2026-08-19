@@ -1,0 +1,223 @@
+{
+  "item": [
+    {
+      "id": "17cab5b0-13d8-4882-9cda-53d4bc5b93d0",
+      "name": "Operations",
+      "description": {
+        "content": "Operations for listing available Event Hub REST API operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6a91fb5-af4c-4733-8bf9-a39babcfe6a6",
+          "name": "Azure Event Hubs List available operations",
+          "request": {
+            "name": "Azure Event Hubs List available operations",
+            "description": {
+              "content": "Lists all of the available Event Hub REST API operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "providers",
+                "Microsoft.EventHub",
+                "operations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Event Hubs namespace name.",
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77de9121-698b-4b78-a47a-00249c4bafce",
+              "name": "OK. The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.EventHub",
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"name\": \"string\",\n      \"isDataAction\": true,\n      \"display\": {\n        \"provider\": \"string\",\n        \"resource\": \"string\",\n        \"operation\": \"string\",\n        \"description\": \"string\"\n      },\n      \"origin\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"isDataAction\": true,\n      \"display\": {\n        \"provider\": \"string\",\n        \"resource\": \"string\",\n        \"operation\": \"string\",\n        \"description\": \"string\"\n      },\n      \"origin\": \"string\"\n    }\n  ],\n  \"nextLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e355cda1-8e39-487b-8447-717948d3b3ba",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    "Microsoft.EventHub",
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Event Hubs namespace name.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-namespace",
+      "key": "namespaceName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{namespaceName}}.servicebus.windows.net",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6f395ea0-51b2-4888-a0bb-bd2fea7605cf",
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules Operations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.\n\nContact Support:\n Name: Microsoft Azure Support",
+      "type": "text/plain"
+    }
+  }
+}

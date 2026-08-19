@@ -1,0 +1,316 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules Namespaces API",
+    "version": "2014-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Namespaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Event Hubs List all namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/providers/Microsoft.EventHub/namespaces",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Lists all the available Namespaces within a subscription, irrespective of the resource groups."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs List namespaces by resource group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Lists the available Namespaces within a resource group."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Get a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Gets the description of the specified namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Create or update a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Update a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Delete a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Deletes an existing namespace. This operation also removes all associated resources under the namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Get network rule set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/networkRuleSets/default",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Gets NetworkRuleSet for a Namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Create or update network rule set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/networkRuleSets/default",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update NetworkRuleSet for a Namespace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

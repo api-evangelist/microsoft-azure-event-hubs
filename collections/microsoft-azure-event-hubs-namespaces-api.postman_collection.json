@@ -1,0 +1,2392 @@
+{
+  "item": [
+    {
+      "id": "75b94e63-dc21-4bf8-9563-713b414e2dc0",
+      "name": "Namespaces",
+      "description": {
+        "content": "Operations for managing Event Hubs namespaces.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e39cac62-ca03-43b7-86c7-be5addf0049c",
+          "name": "Azure Event Hubs List all namespaces",
+          "request": {
+            "name": "Azure Event Hubs List all namespaces",
+            "description": {
+              "content": "Lists all the available Namespaces within a subscription, irrespective of the resource groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "description": "The Event Hubs namespace name.",
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9813180-6703-4ba7-a7b0-7d0d7dcb09de",
+              "name": "Namespaces returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"location\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"sku\": {\n        \"name\": \"Basic\",\n        \"tier\": \"Premium\",\n        \"capacity\": 6792\n      },\n      \"identity\": {\n        \"principalId\": \"string\",\n        \"tenantId\": \"string\",\n        \"type\": \"SystemAssigned, UserAssigned\",\n        \"userAssignedIdentities\": {\n          \"key_0\": {\n            \"clientId\": \"string\",\n            \"principalId\": \"string\"\n          }\n        }\n      },\n      \"properties\": {\n        \"provisioningState\": \"string\",\n        \"status\": \"string\",\n        \"createdAt\": \"2014-09-15T09:48:04.867Z\",\n        \"updatedAt\": \"1998-12-08T10:35:39.767Z\",\n        \"serviceBusEndpoint\": \"string\",\n        \"metricId\": \"string\",\n        \"clusterArmId\": \"string\",\n        \"isAutoInflateEnabled\": true,\n        \"maximumThroughputUnits\": 3500,\n        \"kafkaEnabled\": true,\n        \"zoneRedundant\": false,\n        \"disableLocalAuth\": false,\n        \"minimumTlsVersion\": \"1.1\",\n        \"publicNetworkAccess\": \"Enabled\",\n        \"encryption\": {\n          \"keySource\": \"Microsoft.KeyVault\",\n          \"keyVaultProperties\": [\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"requireInfrastructureEncryption\": true\n        },\n        \"privateEndpointConnections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Succeeded\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Failed\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"alternateName\": \"string\"\n      },\n      \"systemData\": {\n        \"createdBy\": \"string\",\n        \"createdByType\": \"Key\",\n        \"createdAt\": \"2013-08-27T15:48:47.416Z\",\n        \"lastModifiedBy\": \"string\",\n        \"lastModifiedByType\": \"Application\",\n        \"lastModifiedAt\": \"1974-12-29T03:07:16.982Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"location\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"sku\": {\n        \"name\": \"Standard\",\n        \"tier\": \"Premium\",\n        \"capacity\": 6330\n      },\n      \"identity\": {\n        \"principalId\": \"string\",\n        \"tenantId\": \"string\",\n        \"type\": \"UserAssigned\",\n        \"userAssignedIdentities\": {\n          \"key_0\": {\n            \"clientId\": \"string\",\n            \"principalId\": \"string\"\n          }\n        }\n      },\n      \"properties\": {\n        \"provisioningState\": \"string\",\n        \"status\": \"string\",\n        \"createdAt\": \"2010-08-11T15:43:08.575Z\",\n        \"updatedAt\": \"1999-03-13T21:36:00.798Z\",\n        \"serviceBusEndpoint\": \"string\",\n        \"metricId\": \"string\",\n        \"clusterArmId\": \"string\",\n        \"isAutoInflateEnabled\": false,\n        \"maximumThroughputUnits\": 2439,\n        \"kafkaEnabled\": true,\n        \"zoneRedundant\": true,\n        \"disableLocalAuth\": false,\n        \"minimumTlsVersion\": \"1.1\",\n        \"publicNetworkAccess\": \"Enabled\",\n        \"encryption\": {\n          \"keySource\": \"Microsoft.KeyVault\",\n          \"keyVaultProperties\": [\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"requireInfrastructureEncryption\": false\n        },\n        \"privateEndpointConnections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Succeeded\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Deleting\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"alternateName\": \"string\"\n      },\n      \"systemData\": {\n        \"createdBy\": \"string\",\n        \"createdByType\": \"User\",\n        \"createdAt\": \"1961-07-20T09:50:18.326Z\",\n        \"lastModifiedBy\": \"string\",\n        \"lastModifiedByType\": \"Application\",\n        \"lastModifiedAt\": \"1998-09-16T18:52:40.564Z\"\n      }\n    }\n  ],\n  \"nextLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0a3089a-13a9-4ac5-8661-cb5a2c90988e",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82071d2a-7881-4f28-a25a-c566ceabac2a",
+          "name": "Azure Event Hubs List namespaces by resource group",
+          "request": {
+            "name": "Azure Event Hubs List namespaces by resource group",
+            "description": {
+              "content": "Lists the available Namespaces within a resource group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "description": "The Event Hubs namespace name.",
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4ef60aa-02d1-4dd4-9e80-93494db76cb3",
+              "name": "Namespaces returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"location\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"sku\": {\n        \"name\": \"Basic\",\n        \"tier\": \"Premium\",\n        \"capacity\": 6792\n      },\n      \"identity\": {\n        \"principalId\": \"string\",\n        \"tenantId\": \"string\",\n        \"type\": \"SystemAssigned, UserAssigned\",\n        \"userAssignedIdentities\": {\n          \"key_0\": {\n            \"clientId\": \"string\",\n            \"principalId\": \"string\"\n          }\n        }\n      },\n      \"properties\": {\n        \"provisioningState\": \"string\",\n        \"status\": \"string\",\n        \"createdAt\": \"2014-09-15T09:48:04.867Z\",\n        \"updatedAt\": \"1998-12-08T10:35:39.767Z\",\n        \"serviceBusEndpoint\": \"string\",\n        \"metricId\": \"string\",\n        \"clusterArmId\": \"string\",\n        \"isAutoInflateEnabled\": true,\n        \"maximumThroughputUnits\": 3500,\n        \"kafkaEnabled\": true,\n        \"zoneRedundant\": false,\n        \"disableLocalAuth\": false,\n        \"minimumTlsVersion\": \"1.1\",\n        \"publicNetworkAccess\": \"Enabled\",\n        \"encryption\": {\n          \"keySource\": \"Microsoft.KeyVault\",\n          \"keyVaultProperties\": [\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"requireInfrastructureEncryption\": true\n        },\n        \"privateEndpointConnections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Succeeded\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Failed\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"alternateName\": \"string\"\n      },\n      \"systemData\": {\n        \"createdBy\": \"string\",\n        \"createdByType\": \"Key\",\n        \"createdAt\": \"2013-08-27T15:48:47.416Z\",\n        \"lastModifiedBy\": \"string\",\n        \"lastModifiedByType\": \"Application\",\n        \"lastModifiedAt\": \"1974-12-29T03:07:16.982Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"location\": \"string\",\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"sku\": {\n        \"name\": \"Standard\",\n        \"tier\": \"Premium\",\n        \"capacity\": 6330\n      },\n      \"identity\": {\n        \"principalId\": \"string\",\n        \"tenantId\": \"string\",\n        \"type\": \"UserAssigned\",\n        \"userAssignedIdentities\": {\n          \"key_0\": {\n            \"clientId\": \"string\",\n            \"principalId\": \"string\"\n          }\n        }\n      },\n      \"properties\": {\n        \"provisioningState\": \"string\",\n        \"status\": \"string\",\n        \"createdAt\": \"2010-08-11T15:43:08.575Z\",\n        \"updatedAt\": \"1999-03-13T21:36:00.798Z\",\n        \"serviceBusEndpoint\": \"string\",\n        \"metricId\": \"string\",\n        \"clusterArmId\": \"string\",\n        \"isAutoInflateEnabled\": false,\n        \"maximumThroughputUnits\": 2439,\n        \"kafkaEnabled\": true,\n        \"zoneRedundant\": true,\n        \"disableLocalAuth\": false,\n        \"minimumTlsVersion\": \"1.1\",\n        \"publicNetworkAccess\": \"Enabled\",\n        \"encryption\": {\n          \"keySource\": \"Microsoft.KeyVault\",\n          \"keyVaultProperties\": [\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"keyName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVaultUri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"keyVersion\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"identity\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"requireInfrastructureEncryption\": false\n        },\n        \"privateEndpointConnections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Succeeded\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"location\": \"string\",\n            \"properties\": {\n              \"privateEndpoint\": {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"privateLinkServiceConnectionState\": {\n                \"status\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"provisioningState\": \"Deleting\"\n            },\n            \"systemData\": {\n              \"createdBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedByType\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastModifiedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"alternateName\": \"string\"\n      },\n      \"systemData\": {\n        \"createdBy\": \"string\",\n        \"createdByType\": \"User\",\n        \"createdAt\": \"1961-07-20T09:50:18.326Z\",\n        \"lastModifiedBy\": \"string\",\n        \"lastModifiedByType\": \"Application\",\n        \"lastModifiedAt\": \"1998-09-16T18:52:40.564Z\"\n      }\n    }\n  ],\n  \"nextLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2767e5a8-c0ee-4cf5-ae50-b1c206f943b0",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "description": "The Event Hubs namespace name.",
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "114b9700-bf28-422e-9932-c99db9644d30",
+          "name": "Azure Event Hubs Create or update a namespace",
+          "request": {
+            "name": "Azure Event Hubs Create or update a namespace",
+            "description": {
+              "content": "Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"capacity\": \"<integer>\"\n  },\n  \"identity\": {\n    \"type\": \"<string>\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"<string>\",\n          \"keyVaultUri\": \"<string>\",\n          \"keyVersion\": \"<string>\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"<string>\"\n          }\n        },\n        {\n          \"keyName\": \"<string>\",\n          \"keyVaultUri\": \"<string>\",\n          \"keyVersion\": \"<string>\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"<string>\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": \"<boolean>\"\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"<string>\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          \"provisioningState\": \"<string>\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"<string>\",\n          \"createdByType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"lastModifiedBy\": \"<string>\",\n          \"lastModifiedByType\": \"<string>\",\n          \"lastModifiedAt\": \"<dateTime>\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"<string>\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          \"provisioningState\": \"<string>\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"<string>\",\n          \"createdByType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"lastModifiedBy\": \"<string>\",\n          \"lastModifiedByType\": \"<string>\",\n          \"lastModifiedAt\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"<string>\",\n    \"createdByType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedBy\": \"<string>\",\n    \"lastModifiedByType\": \"<string>\",\n    \"lastModifiedAt\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52a12a71-51f4-4b5b-b9f0-5edd8b787bfa",
+              "name": "Namespace successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"location\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"sku\": {\n    \"name\": \"Basic\",\n    \"tier\": \"Premium\",\n    \"capacity\": 5965\n  },\n  \"identity\": {\n    \"principalId\": \"string\",\n    \"tenantId\": \"string\",\n    \"type\": \"UserAssigned\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {\n        \"clientId\": \"string\",\n        \"principalId\": \"string\"\n      }\n    }\n  },\n  \"properties\": {\n    \"provisioningState\": \"string\",\n    \"status\": \"string\",\n    \"createdAt\": \"1980-03-07T12:54:33.501Z\",\n    \"updatedAt\": \"2000-11-08T13:46:25.830Z\",\n    \"serviceBusEndpoint\": \"string\",\n    \"metricId\": \"string\",\n    \"clusterArmId\": \"string\",\n    \"isAutoInflateEnabled\": true,\n    \"maximumThroughputUnits\": 4177,\n    \"kafkaEnabled\": false,\n    \"zoneRedundant\": true,\n    \"disableLocalAuth\": false,\n    \"minimumTlsVersion\": \"1.0\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": true\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Application\",\n          \"createdAt\": \"1976-12-05T03:15:07.341Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"1963-09-30T03:42:39.451Z\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Disconnected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Failed\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"ManagedIdentity\",\n          \"createdAt\": \"2011-02-19T12:59:44.660Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"ManagedIdentity\",\n          \"lastModifiedAt\": \"1978-07-23T07:34:20.405Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"string\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"ManagedIdentity\",\n    \"createdAt\": \"1948-10-04T03:06:23.291Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"ManagedIdentity\",\n    \"lastModifiedAt\": \"1982-01-06T19:27:18.941Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60064565-bf73-4182-805e-2ffe779d031f",
+              "name": "Namespace create request accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"location\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"sku\": {\n    \"name\": \"Basic\",\n    \"tier\": \"Premium\",\n    \"capacity\": 5965\n  },\n  \"identity\": {\n    \"principalId\": \"string\",\n    \"tenantId\": \"string\",\n    \"type\": \"UserAssigned\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {\n        \"clientId\": \"string\",\n        \"principalId\": \"string\"\n      }\n    }\n  },\n  \"properties\": {\n    \"provisioningState\": \"string\",\n    \"status\": \"string\",\n    \"createdAt\": \"1980-03-07T12:54:33.501Z\",\n    \"updatedAt\": \"2000-11-08T13:46:25.830Z\",\n    \"serviceBusEndpoint\": \"string\",\n    \"metricId\": \"string\",\n    \"clusterArmId\": \"string\",\n    \"isAutoInflateEnabled\": true,\n    \"maximumThroughputUnits\": 4177,\n    \"kafkaEnabled\": false,\n    \"zoneRedundant\": true,\n    \"disableLocalAuth\": false,\n    \"minimumTlsVersion\": \"1.0\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": true\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Application\",\n          \"createdAt\": \"1976-12-05T03:15:07.341Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"1963-09-30T03:42:39.451Z\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Disconnected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Failed\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"ManagedIdentity\",\n          \"createdAt\": \"2011-02-19T12:59:44.660Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"ManagedIdentity\",\n          \"lastModifiedAt\": \"1978-07-23T07:34:20.405Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"string\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"ManagedIdentity\",\n    \"createdAt\": \"1948-10-04T03:06:23.291Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"ManagedIdentity\",\n    \"lastModifiedAt\": \"1982-01-06T19:27:18.941Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10259aa7-db61-47dd-ad75-9f893003627a",
+              "name": "Namespace create or update request accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a8e554e-1a4b-4cbf-9b84-a830b284a308",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef17b636-0912-48e7-8044-f7a2573c46b7",
+          "name": "Azure Event Hubs Get a namespace",
+          "request": {
+            "name": "Azure Event Hubs Get a namespace",
+            "description": {
+              "content": "Gets the description of the specified namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0acde52d-0710-4930-8bfb-702be07507a9",
+              "name": "Namespace returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"location\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"sku\": {\n    \"name\": \"Basic\",\n    \"tier\": \"Premium\",\n    \"capacity\": 5965\n  },\n  \"identity\": {\n    \"principalId\": \"string\",\n    \"tenantId\": \"string\",\n    \"type\": \"UserAssigned\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {\n        \"clientId\": \"string\",\n        \"principalId\": \"string\"\n      }\n    }\n  },\n  \"properties\": {\n    \"provisioningState\": \"string\",\n    \"status\": \"string\",\n    \"createdAt\": \"1980-03-07T12:54:33.501Z\",\n    \"updatedAt\": \"2000-11-08T13:46:25.830Z\",\n    \"serviceBusEndpoint\": \"string\",\n    \"metricId\": \"string\",\n    \"clusterArmId\": \"string\",\n    \"isAutoInflateEnabled\": true,\n    \"maximumThroughputUnits\": 4177,\n    \"kafkaEnabled\": false,\n    \"zoneRedundant\": true,\n    \"disableLocalAuth\": false,\n    \"minimumTlsVersion\": \"1.0\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": true\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Application\",\n          \"createdAt\": \"1976-12-05T03:15:07.341Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"1963-09-30T03:42:39.451Z\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Disconnected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Failed\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"ManagedIdentity\",\n          \"createdAt\": \"2011-02-19T12:59:44.660Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"ManagedIdentity\",\n          \"lastModifiedAt\": \"1978-07-23T07:34:20.405Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"string\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"ManagedIdentity\",\n    \"createdAt\": \"1948-10-04T03:06:23.291Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"ManagedIdentity\",\n    \"lastModifiedAt\": \"1982-01-06T19:27:18.941Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ce1db93-679b-4716-ba47-8b76c7bd3705",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1e6ffed-427a-428e-ba9a-155b2e972721",
+          "name": "Azure Event Hubs Update a namespace",
+          "request": {
+            "name": "Azure Event Hubs Update a namespace",
+            "description": {
+              "content": "Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"<string>\",\n    \"tier\": \"<string>\",\n    \"capacity\": \"<integer>\"\n  },\n  \"identity\": {\n    \"type\": \"<string>\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"<string>\",\n          \"keyVaultUri\": \"<string>\",\n          \"keyVersion\": \"<string>\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"<string>\"\n          }\n        },\n        {\n          \"keyName\": \"<string>\",\n          \"keyVaultUri\": \"<string>\",\n          \"keyVersion\": \"<string>\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"<string>\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": \"<boolean>\"\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"<string>\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          \"provisioningState\": \"<string>\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"<string>\",\n          \"createdByType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"lastModifiedBy\": \"<string>\",\n          \"lastModifiedByType\": \"<string>\",\n          \"lastModifiedAt\": \"<dateTime>\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"<string>\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          \"provisioningState\": \"<string>\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"<string>\",\n          \"createdByType\": \"<string>\",\n          \"createdAt\": \"<dateTime>\",\n          \"lastModifiedBy\": \"<string>\",\n          \"lastModifiedByType\": \"<string>\",\n          \"lastModifiedAt\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"<string>\",\n    \"createdByType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedBy\": \"<string>\",\n    \"lastModifiedByType\": \"<string>\",\n    \"lastModifiedAt\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b17abb8-b478-4847-ab39-e8d70dd58162",
+              "name": "Namespace successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"location\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"sku\": {\n    \"name\": \"Basic\",\n    \"tier\": \"Premium\",\n    \"capacity\": 5965\n  },\n  \"identity\": {\n    \"principalId\": \"string\",\n    \"tenantId\": \"string\",\n    \"type\": \"UserAssigned\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {\n        \"clientId\": \"string\",\n        \"principalId\": \"string\"\n      }\n    }\n  },\n  \"properties\": {\n    \"provisioningState\": \"string\",\n    \"status\": \"string\",\n    \"createdAt\": \"1980-03-07T12:54:33.501Z\",\n    \"updatedAt\": \"2000-11-08T13:46:25.830Z\",\n    \"serviceBusEndpoint\": \"string\",\n    \"metricId\": \"string\",\n    \"clusterArmId\": \"string\",\n    \"isAutoInflateEnabled\": true,\n    \"maximumThroughputUnits\": 4177,\n    \"kafkaEnabled\": false,\n    \"zoneRedundant\": true,\n    \"disableLocalAuth\": false,\n    \"minimumTlsVersion\": \"1.0\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": true\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Application\",\n          \"createdAt\": \"1976-12-05T03:15:07.341Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"1963-09-30T03:42:39.451Z\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Disconnected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Failed\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"ManagedIdentity\",\n          \"createdAt\": \"2011-02-19T12:59:44.660Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"ManagedIdentity\",\n          \"lastModifiedAt\": \"1978-07-23T07:34:20.405Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"string\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"ManagedIdentity\",\n    \"createdAt\": \"1948-10-04T03:06:23.291Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"ManagedIdentity\",\n    \"lastModifiedAt\": \"1982-01-06T19:27:18.941Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "094e0fbb-c1ea-4632-9606-d44e59fab5ad",
+              "name": "Namespace update request accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"location\": \"string\",\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"sku\": {\n    \"name\": \"Basic\",\n    \"tier\": \"Premium\",\n    \"capacity\": 5965\n  },\n  \"identity\": {\n    \"principalId\": \"string\",\n    \"tenantId\": \"string\",\n    \"type\": \"UserAssigned\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {\n        \"clientId\": \"string\",\n        \"principalId\": \"string\"\n      }\n    }\n  },\n  \"properties\": {\n    \"provisioningState\": \"string\",\n    \"status\": \"string\",\n    \"createdAt\": \"1980-03-07T12:54:33.501Z\",\n    \"updatedAt\": \"2000-11-08T13:46:25.830Z\",\n    \"serviceBusEndpoint\": \"string\",\n    \"metricId\": \"string\",\n    \"clusterArmId\": \"string\",\n    \"isAutoInflateEnabled\": true,\n    \"maximumThroughputUnits\": 4177,\n    \"kafkaEnabled\": false,\n    \"zoneRedundant\": true,\n    \"disableLocalAuth\": false,\n    \"minimumTlsVersion\": \"1.0\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": true\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Application\",\n          \"createdAt\": \"1976-12-05T03:15:07.341Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"1963-09-30T03:42:39.451Z\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"location\": \"string\",\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Disconnected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Failed\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"ManagedIdentity\",\n          \"createdAt\": \"2011-02-19T12:59:44.660Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"ManagedIdentity\",\n          \"lastModifiedAt\": \"1978-07-23T07:34:20.405Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"string\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"ManagedIdentity\",\n    \"createdAt\": \"1948-10-04T03:06:23.291Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"ManagedIdentity\",\n    \"lastModifiedAt\": \"1982-01-06T19:27:18.941Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3016ba69-0196-4fc8-96b8-8699aa8353fc",
+              "name": "Namespace update request accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0067aeb5-14e7-4874-a4b5-ca1ddf49db85",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"sku\": {\n    \"name\": \"Standard\",\n    \"tier\": \"Premium\",\n    \"capacity\": 7107\n  },\n  \"identity\": {\n    \"type\": \"None\",\n    \"userAssignedIdentities\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"properties\": {\n    \"clusterArmId\": \"<string>\",\n    \"isAutoInflateEnabled\": \"<boolean>\",\n    \"maximumThroughputUnits\": \"<integer>\",\n    \"kafkaEnabled\": \"<boolean>\",\n    \"zoneRedundant\": \"<boolean>\",\n    \"disableLocalAuth\": \"<boolean>\",\n    \"minimumTlsVersion\": \"<string>\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"encryption\": {\n      \"keySource\": \"Microsoft.KeyVault\",\n      \"keyVaultProperties\": [\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        },\n        {\n          \"keyName\": \"string\",\n          \"keyVaultUri\": \"string\",\n          \"keyVersion\": \"string\",\n          \"identity\": {\n            \"userAssignedIdentity\": \"string\"\n          }\n        }\n      ],\n      \"requireInfrastructureEncryption\": false\n    },\n    \"privateEndpointConnections\": [\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Succeeded\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"2018-10-15T18:31:30.406Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"User\",\n          \"lastModifiedAt\": \"2018-04-12T22:21:59.766Z\"\n        }\n      },\n      {\n        \"properties\": {\n          \"privateEndpoint\": {\n            \"id\": \"string\"\n          },\n          \"privateLinkServiceConnectionState\": {\n            \"status\": \"Rejected\",\n            \"description\": \"string\"\n          },\n          \"provisioningState\": \"Canceled\"\n        },\n        \"systemData\": {\n          \"createdBy\": \"string\",\n          \"createdByType\": \"Key\",\n          \"createdAt\": \"1990-08-12T12:28:56.910Z\",\n          \"lastModifiedBy\": \"string\",\n          \"lastModifiedByType\": \"Key\",\n          \"lastModifiedAt\": \"1949-05-24T02:20:23.654Z\"\n        }\n      }\n    ],\n    \"alternateName\": \"<string>\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1953-01-05T23:23:11.820Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"Application\",\n    \"lastModifiedAt\": \"1959-04-14T15:41:02.562Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0801e276-5e9d-4f9b-8d8f-e5b39ebe889e",
+          "name": "Azure Event Hubs Delete a namespace",
+          "request": {
+            "name": "Azure Event Hubs Delete a namespace",
+            "description": {
+              "content": "Deletes an existing namespace. This operation also removes all associated resources under the namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2228ed6-c9f4-43c0-ac60-2b3890abbd15",
+              "name": "Namespace successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6e09e62-066b-41e6-aa54-2e37724673a5",
+              "name": "Namespace delete request accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed960b0e-b0bd-4c84-840e-c26bf6b76412",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "667b30b7-e9e1-471d-a11f-dae29f0573ed",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee0d9961-a299-4536-b336-8af9f90559c0",
+          "name": "Azure Event Hubs Create or update network rule set",
+          "request": {
+            "name": "Azure Event Hubs Create or update network rule set",
+            "description": {
+              "content": "Create or update NetworkRuleSet for a Namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "networkRuleSets",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"trustedServiceAccessEnabled\": \"<boolean>\",\n    \"defaultAction\": \"<string>\",\n    \"virtualNetworkRules\": [\n      {\n        \"subnet\": {\n          \"id\": \"<string>\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": \"<boolean>\"\n      },\n      {\n        \"subnet\": {\n          \"id\": \"<string>\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": \"<boolean>\"\n      }\n    ],\n    \"ipRules\": [\n      {\n        \"ipMask\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      {\n        \"ipMask\": \"<string>\",\n        \"action\": \"<string>\"\n      }\n    ],\n    \"publicNetworkAccess\": \"Enabled\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"<string>\",\n    \"createdByType\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedBy\": \"<string>\",\n    \"lastModifiedByType\": \"<string>\",\n    \"lastModifiedAt\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "095c0635-8f80-4b13-b5fc-452bd67021a4",
+              "name": "Namespace NetworkRuleSet successfully returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "networkRuleSets",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"trustedServiceAccessEnabled\": \"<boolean>\",\n    \"defaultAction\": \"<string>\",\n    \"virtualNetworkRules\": [\n      {\n        \"subnet\": {\n          \"id\": \"<string>\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": \"<boolean>\"\n      },\n      {\n        \"subnet\": {\n          \"id\": \"<string>\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": \"<boolean>\"\n      }\n    ],\n    \"ipRules\": [\n      {\n        \"ipMask\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      {\n        \"ipMask\": \"<string>\",\n        \"action\": \"<string>\"\n      }\n    ],\n    \"publicNetworkAccess\": \"Enabled\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1974-02-11T20:48:17.651Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"ManagedIdentity\",\n    \"lastModifiedAt\": \"2002-04-14T17:49:02.080Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"properties\": {\n    \"trustedServiceAccessEnabled\": false,\n    \"defaultAction\": \"Allow\",\n    \"virtualNetworkRules\": [\n      {\n        \"subnet\": {\n          \"id\": \"string\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": true\n      },\n      {\n        \"subnet\": {\n          \"id\": \"string\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": true\n      }\n    ],\n    \"ipRules\": [\n      {\n        \"ipMask\": \"string\",\n        \"action\": \"Allow\"\n      },\n      {\n        \"ipMask\": \"string\",\n        \"action\": \"Allow\"\n      }\n    ],\n    \"publicNetworkAccess\": \"Enabled\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"Key\",\n    \"createdAt\": \"1963-05-09T03:51:08.999Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"User\",\n    \"lastModifiedAt\": \"2015-08-21T14:45:05.270Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd262d3d-ded8-425c-9c2e-5f8d91ca0a6b",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "networkRuleSets",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"trustedServiceAccessEnabled\": \"<boolean>\",\n    \"defaultAction\": \"<string>\",\n    \"virtualNetworkRules\": [\n      {\n        \"subnet\": {\n          \"id\": \"<string>\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": \"<boolean>\"\n      },\n      {\n        \"subnet\": {\n          \"id\": \"<string>\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": \"<boolean>\"\n      }\n    ],\n    \"ipRules\": [\n      {\n        \"ipMask\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      {\n        \"ipMask\": \"<string>\",\n        \"action\": \"<string>\"\n      }\n    ],\n    \"publicNetworkAccess\": \"Enabled\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"User\",\n    \"createdAt\": \"1974-02-11T20:48:17.651Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"ManagedIdentity\",\n    \"lastModifiedAt\": \"2002-04-14T17:49:02.080Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79ff8fa2-be40-4aa2-9d50-ca36c9c6bd53",
+          "name": "Azure Event Hubs Get network rule set",
+          "request": {
+            "name": "Azure Event Hubs Get network rule set",
+            "description": {
+              "content": "Gets NetworkRuleSet for a Namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.EventHub",
+                "namespaces",
+                ":namespaceName",
+                "networkRuleSets",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2024-01-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) Name of the resource group within the Azure subscription."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{namespaceName}}",
+                  "key": "namespaceName",
+                  "description": "The Event Hubs namespace name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dca495b6-40f0-4440-a795-0c650d425144",
+              "name": "Namespace NetworkRuleSet successfully returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "networkRuleSets",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"properties\": {\n    \"trustedServiceAccessEnabled\": false,\n    \"defaultAction\": \"Allow\",\n    \"virtualNetworkRules\": [\n      {\n        \"subnet\": {\n          \"id\": \"string\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": true\n      },\n      {\n        \"subnet\": {\n          \"id\": \"string\"\n        },\n        \"ignoreMissingVnetServiceEndpoint\": true\n      }\n    ],\n    \"ipRules\": [\n      {\n        \"ipMask\": \"string\",\n        \"action\": \"Allow\"\n      },\n      {\n        \"ipMask\": \"string\",\n        \"action\": \"Allow\"\n      }\n    ],\n    \"publicNetworkAccess\": \"Enabled\"\n  },\n  \"systemData\": {\n    \"createdBy\": \"string\",\n    \"createdByType\": \"Key\",\n    \"createdAt\": \"1963-05-09T03:51:08.999Z\",\n    \"lastModifiedBy\": \"string\",\n    \"lastModifiedByType\": \"User\",\n    \"lastModifiedAt\": \"2015-08-21T14:45:05.270Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88d30cef-2cf8-451b-84e5-1bad6cb18f2e",
+              "name": "Event Hubs error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.EventHub",
+                    "namespaces",
+                    ":namespaceName",
+                    "networkRuleSets",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2024-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) Name of the resource group within the Azure subscription."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "{{namespaceName}}",
+                      "key": "namespaceName",
+                      "description": "The Event Hubs namespace name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ErrorDetail detected>\"\n      }\n    ],\n    \"additionalInfo\": [\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      },\n      {\n        \"type\": \"string\",\n        \"info\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Event Hubs namespace name.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-namespace",
+      "key": "namespaceName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{namespaceName}}.servicebus.windows.net",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f47edb88-718f-455a-a604-6eaea40fa2c8",
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules Namespaces API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.\n\nContact Support:\n Name: Microsoft Azure Support",
+      "type": "text/plain"
+    }
+  }
+}

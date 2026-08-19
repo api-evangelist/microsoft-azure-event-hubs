@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules Operations API",
+    "version": "2014-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Event Hubs List available operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/providers/Microsoft.EventHub/operations",
+            "params": [
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Lists all of the available Event Hub REST API operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

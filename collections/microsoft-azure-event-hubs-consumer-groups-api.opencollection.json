@@ -1,0 +1,230 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Event Hubs Data Plane REST Authorization Rules Consumer Groups API",
+    "version": "2014-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consumer Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Event Hubs List consumer groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/eventhubs/:eventHubName/consumergroups",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "eventHubName",
+                "value": "",
+                "type": "path",
+                "description": "The Event Hub name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets all the consumer groups in a Namespace. An empty feed is returned if no consumer group exists in the Namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Get a consumer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/eventhubs/:eventHubName/consumergroups/:consumerGroupName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "eventHubName",
+                "value": "",
+                "type": "path",
+                "description": "The Event Hub name."
+              },
+              {
+                "name": "consumerGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The consumer group name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Gets a description for the specified consumer group."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Create or update a consumer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/eventhubs/:eventHubName/consumergroups/:consumerGroupName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "eventHubName",
+                "value": "",
+                "type": "path",
+                "description": "The Event Hub name."
+              },
+              {
+                "name": "consumerGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The consumer group name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates an Event Hubs consumer group as a nested resource within a Namespace."
+        },
+        {
+          "info": {
+            "name": "Azure Event Hubs Delete a consumer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{namespaceName}.servicebus.windows.net/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.EventHub/namespaces/:namespaceName/eventhubs/:eventHubName/consumergroups/:consumerGroupName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource group within the Azure subscription."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "The Namespace name."
+              },
+              {
+                "name": "eventHubName",
+                "value": "",
+                "type": "path",
+                "description": "The Event Hub name."
+              },
+              {
+                "name": "consumerGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The consumer group name."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "Client API version."
+              }
+            ]
+          },
+          "docs": "Deletes a consumer group from the specified Event Hub and resource group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
