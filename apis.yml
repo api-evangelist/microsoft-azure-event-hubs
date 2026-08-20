@@ -143,6 +143,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/eventhub/
   baseURL: https://management.azure.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -176,7 +178,8 @@ apis:
   description: Operations for listing available Event Hub REST API operations.
   humanURL: https://learn.microsoft.com/en-us/rest/api/eventhub/
   baseURL: https://management.azure.com
-  tags:
+  tags: []
+  tags_raw:
   - Operations
   properties:
   - type: OpenAPI
