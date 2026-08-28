@@ -11,8 +11,8 @@ info:
     directly.
   version: 1.0.0
 sourceDescriptions:
-- name: eventHubsManagementApi
-  url: ../openapi/azure-event-hubs-management-openapi.yml
+- name: namespacesApi
+  url: ../openapi/microsoft-azure-event-hubs-namespaces-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: lock-down-namespace-network

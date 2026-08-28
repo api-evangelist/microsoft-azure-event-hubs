@@ -12,8 +12,8 @@ info:
     directly.
   version: 1.0.0
 sourceDescriptions:
-- name: eventHubsManagementApi
-  url: ../openapi/azure-event-hubs-management-openapi.yml
+- name: eventHubsApi
+  url: ../openapi/microsoft-azure-event-hubs-event-hubs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: configure-event-hub-capture

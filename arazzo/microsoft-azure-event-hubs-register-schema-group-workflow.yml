@@ -10,8 +10,8 @@ info:
     {properties:{...}} request so the registration can be executed directly.
   version: 1.0.0
 sourceDescriptions:
-- name: eventHubsManagementApi
-  url: ../openapi/azure-event-hubs-management-openapi.yml
+- name: schemaRegistryApi
+  url: ../openapi/microsoft-azure-event-hubs-schema-registry-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: register-schema-group

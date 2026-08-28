@@ -10,8 +10,8 @@ info:
     ARM request so the rotation can be executed and audited directly.
   version: 1.0.0
 sourceDescriptions:
-- name: eventHubsManagementApi
-  url: ../openapi/azure-event-hubs-management-openapi.yml
+- name: authorizationRulesApi
+  url: ../openapi/microsoft-azure-event-hubs-authorization-rules-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: rotate-namespace-keys

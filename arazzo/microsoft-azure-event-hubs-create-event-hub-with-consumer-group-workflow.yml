@@ -10,8 +10,11 @@ info:
     response handling so the flow can be executed directly.
   version: 1.0.0
 sourceDescriptions:
-- name: eventHubsManagementApi
-  url: ../openapi/azure-event-hubs-management-openapi.yml
+- name: consumerGroupsApi
+  url: ../openapi/microsoft-azure-event-hubs-consumer-groups-api-openapi.yml
+  type: openapi
+- name: eventHubsApi
+  url: ../openapi/microsoft-azure-event-hubs-event-hubs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-event-hub-with-consumer-group
