@@ -267,7 +267,7 @@ common:
     url: https://learn.microsoft.com/en-us/azure/event-hubs/authenticate-application
   - type: Best Practices
     url: https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-best-practices
-  - type: Samples
+  - type: Examples
     url: https://github.com/Azure/azure-event-hubs/tree/master/samples
   - type: Support
     url: https://azure.microsoft.com/en-us/support/
