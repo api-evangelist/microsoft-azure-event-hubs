@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Azure Event Hubs Data Plane REST Authorization Rules Events API
+  title: Azure Event Hubs Data Plane REST Events API
   description: The Azure Event Hubs Data Plane REST API enables you to send events to and interact with Event Hubs directly. This API operates against the Event Hubs service endpoint at {namespace}.servicebus.windows.net and supports sending individual events, batch events, partition-specific events, and events with publisher identity. Authentication is via Azure Active Directory tokens or Shared Access Signature (SAS) tokens.
   version: 2014-01
   contact:
@@ -240,46 +240,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: The API version to use for the request.
-      schema:
-        type: string
-        default: 2014-01
-    EventHubPathParameter:
-      name: eventHubPath
-      in: path
-      required: true
-      description: The path to the event hub.
-      schema:
-        type: string
-    PartitionIdParameter:
-      name: partitionId
-      in: path
-      required: true
-      description: The ID of a partition on an event hub.
-      schema:
-        type: string
-    TimeoutParameter:
-      name: timeout
-      in: query
-      required: false
-      description: Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 120
-        default: 60
-    PublisherIdParameter:
-      name: publisherId
-      in: path
-      required: true
-      description: The name of the publisher.
-      schema:
-        type: string
   schemas:
     ErrorResponse:
       type: object
@@ -291,6 +251,11 @@ components:
         detail:
           type: string
           description: The error detail message.
+    BatchEventPayload:
+      type: array
+      description: An array of event messages for batch sending. Each message must have a Body field. UserProperties can optionally be included per message.
+      items:
+        $ref: '#/components/schemas/BatchEventMessage'
     EventBody:
       description: The body of an event message. Can be any valid JSON, plain text, or binary data.
       oneOf:
@@ -338,11 +303,46 @@ components:
             ReplyTo:
               type: string
               description: The address to reply to.
-    BatchEventPayload:
-      type: array
-      description: An array of event messages for batch sending. Each message must have a Body field. UserProperties can optionally be included per message.
-      items:
-        $ref: '#/components/schemas/BatchEventMessage'
+  parameters:
+    PartitionIdParameter:
+      name: partitionId
+      in: path
+      required: true
+      description: The ID of a partition on an event hub.
+      schema:
+        type: string
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: The API version to use for the request.
+      schema:
+        type: string
+        default: 2014-01
+    PublisherIdParameter:
+      name: publisherId
+      in: path
+      required: true
+      description: The name of the publisher.
+      schema:
+        type: string
+    TimeoutParameter:
+      name: timeout
+      in: query
+      required: false
+      description: Timeout for the REST operation in seconds. The value is between 1 and 120 seconds.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 120
+        default: 60
+    EventHubPathParameter:
+      name: eventHubPath
+      in: path
+      required: true
+      description: The path to the event hub.
+      schema:
+        type: string
   securitySchemes:
     sas_token:
       type: apiKey

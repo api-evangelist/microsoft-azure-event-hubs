@@ -1,21 +1,15 @@
 {
   "provider": "microsoft-azure-event-hubs",
   "sources": [
-    "microsoft-azure-event-hubs-authorization-rules-api-openapi.yml",
-    "microsoft-azure-event-hubs-consumer-groups-api-openapi.yml",
-    "microsoft-azure-event-hubs-disaster-recovery-configs-api-openapi.yml",
-    "microsoft-azure-event-hubs-event-hubs-api-openapi.yml",
-    "microsoft-azure-event-hubs-events-api-openapi.yml",
-    "microsoft-azure-event-hubs-namespaces-api-openapi.yml",
-    "microsoft-azure-event-hubs-operations-api-openapi.yml",
-    "microsoft-azure-event-hubs-schema-registry-api-openapi.yml"
+    "_original/azure-event-hubs-data-plane-openapi.yml",
+    "_original/azure-event-hubs-management-openapi.yml"
   ],
   "outputs": [
+    "microsoft-azure-event-hubs-events-api-openapi.yml",
     "microsoft-azure-event-hubs-authorization-rules-api-openapi.yml",
     "microsoft-azure-event-hubs-consumer-groups-api-openapi.yml",
     "microsoft-azure-event-hubs-disaster-recovery-configs-api-openapi.yml",
     "microsoft-azure-event-hubs-event-hubs-api-openapi.yml",
-    "microsoft-azure-event-hubs-events-api-openapi.yml",
     "microsoft-azure-event-hubs-namespaces-api-openapi.yml",
     "microsoft-azure-event-hubs-operations-api-openapi.yml",
     "microsoft-azure-event-hubs-schema-registry-api-openapi.yml"
@@ -23,6 +17,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "azure-event-hubs-data-plane-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "azure-event-hubs-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "microsoft-azure-event-hubs-authorization-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-event-hubs-consumer-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-event-hubs-disaster-recovery-configs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-event-hubs-event-hubs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-event-hubs-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-event-hubs-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-event-hubs-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-event-hubs-schema-registry-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
