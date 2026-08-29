@@ -3,6 +3,18 @@ description: >-
   Azure Event Hubs is a big data streaming platform and event ingestion service that can receive and process millions of
   events per second. It provides a distributed stream processing platform with low latency and seamless integration with
   Azure data and analytics services.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
