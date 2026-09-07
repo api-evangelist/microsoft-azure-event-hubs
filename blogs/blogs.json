@@ -2,13 +2,18 @@
   "repo": "microsoft-azure-event-hubs",
   "feeds": [
     {
+      "source": "https://status.azure.com/",
+      "feed_url": "https://status.azure.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=MessagingonAzureBlog",
       "feed_url": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=MessagingonAzureBlog",
       "title": "",
       "saved": 0,
-      "method": "feed",
-      "nature": "vendor-blog",
-      "nature_basis": "khoros_blog"
+      "method": "feed"
     },
     {
       "source": "https://status.azure.com/feed/",
@@ -16,16 +21,9 @@
       "title": "",
       "saved": 0,
       "method": "feed"
-    },
-    {
-      "source": "https://status.azure.com/",
-      "feed_url": "https://status.azure.com/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "discovered"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 24,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "khoros_blog",
