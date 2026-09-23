@@ -145,12 +145,34 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    ErrorDetail:
       type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      description: The error detail.
       properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
+        code:
+          type: string
+          readOnly: true
+          description: The error code.
+        message:
+          type: string
+          readOnly: true
+          description: The error message.
+        target:
+          type: string
+          readOnly: true
+          description: The error target.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          description: The error details.
+        additionalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorAdditionalInfo'
+          readOnly: true
+          description: The error additional info.
     SystemData:
       type: object
       description: Metadata pertaining to creation and last modification of the resource.
@@ -185,6 +207,30 @@ components:
           type: string
           format: date-time
           description: The timestamp of resource last modification (UTC).
+    ConsumerGroupListResult:
+      type: object
+      description: The result of the List Consumer Groups operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsumerGroup'
+          description: Result of the List Consumer Groups operation.
+        nextLink:
+          type: string
+          description: Link to the next set of results. Not empty if Value contains incomplete list of Consumer Groups.
+    ErrorAdditionalInfo:
+      type: object
+      description: The resource management error additional info.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The additional info type.
+        info:
+          type: object
+          readOnly: true
+          description: The additional info.
     ConsumerGroup:
       type: object
       description: Single item in List or Get Consumer group operation.
@@ -223,83 +269,13 @@ components:
               description: User Metadata is a placeholder to store user-defined string data with maximum length 1024.
         systemData:
           $ref: '#/components/schemas/SystemData'
-    ConsumerGroupListResult:
+    ErrorResponse:
       type: object
-      description: The result of the List Consumer Groups operation.
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
       properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConsumerGroup'
-          description: Result of the List Consumer Groups operation.
-        nextLink:
-          type: string
-          description: Link to the next set of results. Not empty if Value contains incomplete list of Consumer Groups.
-    ErrorDetail:
-      type: object
-      description: The error detail.
-      properties:
-        code:
-          type: string
-          readOnly: true
-          description: The error code.
-        message:
-          type: string
-          readOnly: true
-          description: The error message.
-        target:
-          type: string
-          readOnly: true
-          description: The error target.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          readOnly: true
-          description: The error details.
-        additionalInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorAdditionalInfo'
-          readOnly: true
-          description: The error additional info.
-    ErrorAdditionalInfo:
-      type: object
-      description: The resource management error additional info.
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The additional info type.
-        info:
-          type: object
-          readOnly: true
-          description: The additional info.
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
   parameters:
-    SubscriptionIdParameter:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-      schema:
-        type: string
-    EventHubNameParameter:
-      name: eventHubName
-      in: path
-      required: true
-      description: The Event Hub name.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 256
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2024-01-01'
     NamespaceNameParameter:
       name: namespaceName
       in: path
@@ -310,6 +286,21 @@ components:
         minLength: 6
         maxLength: 50
         pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
     ConsumerGroupNameParameter:
       name: consumerGroupName
       in: path
@@ -319,6 +310,15 @@ components:
         type: string
         minLength: 1
         maxLength: 50
+    EventHubNameParameter:
+      name: eventHubName
+      in: path
+      required: true
+      description: The Event Hub name.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 256
     ResourceGroupNameParameter:
       name: resourceGroupName
       in: path

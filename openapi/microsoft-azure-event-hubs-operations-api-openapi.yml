@@ -45,12 +45,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    OperationListResult:
       type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      description: Result of the request to list Event Hub operations. It contains a list of operations and a URL link to get the next set of results.
       properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operation'
+          readOnly: true
+          description: List of Event Hub operations supported by the Microsoft.EventHub resource provider.
+        nextLink:
+          type: string
+          readOnly: true
+          description: URL to get the next set of operation list results.
     ErrorDetail:
       type: object
       description: The error detail.
@@ -112,20 +120,6 @@ components:
         origin:
           type: string
           description: Origin of the operation.
-    OperationListResult:
-      type: object
-      description: Result of the request to list Event Hub operations. It contains a list of operations and a URL link to get the next set of results.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Operation'
-          readOnly: true
-          description: List of Event Hub operations supported by the Microsoft.EventHub resource provider.
-        nextLink:
-          type: string
-          readOnly: true
-          description: URL to get the next set of operation list results.
     ErrorAdditionalInfo:
       type: object
       description: The resource management error additional info.
@@ -138,6 +132,12 @@ components:
           type: object
           readOnly: true
           description: The additional info.
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
   parameters:
     ApiVersionParameter:
       name: api-version

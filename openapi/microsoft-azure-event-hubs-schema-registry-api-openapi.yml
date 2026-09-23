@@ -162,98 +162,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
-    SystemData:
-      type: object
-      description: Metadata pertaining to creation and last modification of the resource.
-      properties:
-        createdBy:
-          type: string
-          description: The identity that created the resource.
-        createdByType:
-          type: string
-          description: The type of identity that created the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource creation (UTC).
-        lastModifiedBy:
-          type: string
-          description: The identity that last modified the resource.
-        lastModifiedByType:
-          type: string
-          description: The type of identity that last modified the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource last modification (UTC).
-    SchemaGroupListResult:
-      type: object
-      description: The result of the List Schema Groups operation.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchemaGroup'
-          description: Result of the List Schema Groups operation.
-        nextLink:
-          type: string
-          description: Link to the next set of results.
-    ErrorDetail:
-      type: object
-      description: The error detail.
-      properties:
-        code:
-          type: string
-          readOnly: true
-          description: The error code.
-        message:
-          type: string
-          readOnly: true
-          description: The error message.
-        target:
-          type: string
-          readOnly: true
-          description: The error target.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          readOnly: true
-          description: The error details.
-        additionalInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorAdditionalInfo'
-          readOnly: true
-          description: The error additional info.
-    ErrorAdditionalInfo:
-      type: object
-      description: The resource management error additional info.
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The additional info type.
-        info:
-          type: object
-          readOnly: true
-          description: The additional info.
     SchemaGroup:
       type: object
       description: Single item in List or Get Schema Group operation.
@@ -308,22 +216,99 @@ components:
               - Avro
         systemData:
           $ref: '#/components/schemas/SystemData'
+    ErrorDetail:
+      type: object
+      description: The error detail.
+      properties:
+        code:
+          type: string
+          readOnly: true
+          description: The error code.
+        message:
+          type: string
+          readOnly: true
+          description: The error message.
+        target:
+          type: string
+          readOnly: true
+          description: The error target.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          description: The error details.
+        additionalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorAdditionalInfo'
+          readOnly: true
+          description: The error additional info.
+    SystemData:
+      type: object
+      description: Metadata pertaining to creation and last modification of the resource.
+      properties:
+        createdBy:
+          type: string
+          description: The identity that created the resource.
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
+    ErrorAdditionalInfo:
+      type: object
+      description: The resource management error additional info.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The additional info type.
+        info:
+          type: object
+          readOnly: true
+          description: The additional info.
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    SchemaGroupListResult:
+      type: object
+      description: The result of the List Schema Groups operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaGroup'
+          description: Result of the List Schema Groups operation.
+        nextLink:
+          type: string
+          description: Link to the next set of results.
   parameters:
-    SubscriptionIdParameter:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-      schema:
-        type: string
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2024-01-01'
     NamespaceNameParameter:
       name: namespaceName
       in: path
@@ -334,6 +319,21 @@ components:
         minLength: 6
         maxLength: 50
         pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
     ResourceGroupNameParameter:
       name: resourceGroupName
       in: path

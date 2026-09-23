@@ -143,71 +143,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
-    EventHubListResult:
-      type: object
-      description: The result of the List EventHubs operation.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Eventhub'
-          description: Result of the List EventHubs operation.
-        nextLink:
-          type: string
-          description: Link to the next set of results. Not empty if Value contains incomplete list of EventHubs.
-    SystemData:
-      type: object
-      description: Metadata pertaining to creation and last modification of the resource.
-      properties:
-        createdBy:
-          type: string
-          description: The identity that created the resource.
-        createdByType:
-          type: string
-          description: The type of identity that created the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource creation (UTC).
-        lastModifiedBy:
-          type: string
-          description: The identity that last modified the resource.
-        lastModifiedByType:
-          type: string
-          description: The type of identity that last modified the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource last modification (UTC).
-    CaptureIdentity:
-      type: object
-      description: A value that indicates whether capture description is enabled.
-      properties:
-        type:
-          type: string
-          description: Type of Azure Active Directory Managed Identity.
-          enum:
-          - SystemAssigned
-          - UserAssigned
-        userAssignedIdentity:
-          type: string
-          description: ARM ID of Managed User Identity. This property is required if the type is UserAssignedIdentity.
     Eventhub:
       type: object
       description: Single item in List or Get Event Hub operation.
@@ -279,32 +214,40 @@ components:
               $ref: '#/components/schemas/RetentionDescription'
         systemData:
           $ref: '#/components/schemas/SystemData'
-    CaptureDescription:
+    SystemData:
       type: object
-      description: Properties to configure capture description for eventhub.
+      description: Metadata pertaining to creation and last modification of the resource.
       properties:
-        enabled:
-          type: boolean
-          description: A value that indicates whether capture description is enabled.
-        encoding:
+        createdBy:
           type: string
-          description: Enumerates the possible values for the encoding format of capture description.
+          description: The identity that created the resource.
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
           enum:
-          - Avro
-          - AvroDeflate
-        destination:
-          $ref: '#/components/schemas/Destination'
-        intervalInSeconds:
-          type: integer
-          format: int32
-          description: The time window allows you to set the frequency with which the capture to Azure Blobs will happen, value should between 60 to 900 seconds.
-        sizeLimitInBytes:
-          type: integer
-          format: int32
-          description: The size window defines the amount of data built up in your Event Hub before a capture operation, value should be between 10485760 to 524288000 bytes.
-        skipEmptyArchives:
-          type: boolean
-          description: A value that indicates whether to skip empty archives.
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
     Destination:
       type: object
       description: Capture storage details for capture description.
@@ -364,6 +307,45 @@ components:
             $ref: '#/components/schemas/ErrorAdditionalInfo'
           readOnly: true
           description: The error additional info.
+    CaptureDescription:
+      type: object
+      description: Properties to configure capture description for eventhub.
+      properties:
+        enabled:
+          type: boolean
+          description: A value that indicates whether capture description is enabled.
+        encoding:
+          type: string
+          description: Enumerates the possible values for the encoding format of capture description.
+          enum:
+          - Avro
+          - AvroDeflate
+        destination:
+          $ref: '#/components/schemas/Destination'
+        intervalInSeconds:
+          type: integer
+          format: int32
+          description: The time window allows you to set the frequency with which the capture to Azure Blobs will happen, value should between 60 to 900 seconds.
+        sizeLimitInBytes:
+          type: integer
+          format: int32
+          description: The size window defines the amount of data built up in your Event Hub before a capture operation, value should be between 10485760 to 524288000 bytes.
+        skipEmptyArchives:
+          type: boolean
+          description: A value that indicates whether to skip empty archives.
+    CaptureIdentity:
+      type: object
+      description: A value that indicates whether capture description is enabled.
+      properties:
+        type:
+          type: string
+          description: Type of Azure Active Directory Managed Identity.
+          enum:
+          - SystemAssigned
+          - UserAssigned
+        userAssignedIdentity:
+          type: string
+          description: ARM ID of Managed User Identity. This property is required if the type is UserAssignedIdentity.
     RetentionDescription:
       type: object
       description: Properties to configure retention settings for the eventhub.
@@ -394,31 +376,25 @@ components:
           type: object
           readOnly: true
           description: The additional info.
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    EventHubListResult:
+      type: object
+      description: The result of the List EventHubs operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Eventhub'
+          description: Result of the List EventHubs operation.
+        nextLink:
+          type: string
+          description: Link to the next set of results. Not empty if Value contains incomplete list of EventHubs.
   parameters:
-    EventHubNameParameter:
-      name: eventHubName
-      in: path
-      required: true
-      description: The Event Hub name.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 256
-    SubscriptionIdParameter:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-      schema:
-        type: string
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2024-01-01'
     NamespaceNameParameter:
       name: namespaceName
       in: path
@@ -429,6 +405,30 @@ components:
         minLength: 6
         maxLength: 50
         pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
+    EventHubNameParameter:
+      name: eventHubName
+      in: path
+      required: true
+      description: The Event Hub name.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 256
     ResourceGroupNameParameter:
       name: resourceGroupName
       in: path

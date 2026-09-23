@@ -253,46 +253,31 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    Identity:
       type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      description: Properties to configure Identity for the namespace.
       properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
-    SystemData:
-      type: object
-      description: Metadata pertaining to creation and last modification of the resource.
-      properties:
-        createdBy:
+        principalId:
           type: string
-          description: The identity that created the resource.
-        createdByType:
+          readOnly: true
+          description: ObjectId from the KeyVault.
+        tenantId:
           type: string
-          description: The type of identity that created the resource.
+          readOnly: true
+          description: TenantId from the KeyVault.
+        type:
+          type: string
+          description: Type of managed service identity.
           enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource creation (UTC).
-        lastModifiedBy:
-          type: string
-          description: The identity that last modified the resource.
-        lastModifiedByType:
-          type: string
-          description: The type of identity that last modified the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource last modification (UTC).
+          - SystemAssigned
+          - UserAssigned
+          - SystemAssigned, UserAssigned
+          - None
+        userAssignedIdentities:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/UserAssignedIdentity'
+          description: Properties for User Assigned Identities.
     NetworkRuleSet:
       type: object
       description: Description of topic resource.
@@ -360,138 +345,6 @@ components:
               default: Enabled
         systemData:
           $ref: '#/components/schemas/SystemData'
-    UserAssignedIdentity:
-      type: object
-      description: Recognized Dictionary value.
-      properties:
-        clientId:
-          type: string
-          readOnly: true
-          description: Client Id of user assigned identity.
-        principalId:
-          type: string
-          readOnly: true
-          description: Principal Id of user assigned identity.
-    EHNamespaceListResult:
-      type: object
-      description: The response of the List Namespace operation.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/EHNamespace'
-          description: Result of the List Namespace operation.
-        nextLink:
-          type: string
-          description: Link to the next set of results. Not empty if Value contains incomplete list of namespaces.
-    PrivateEndpointConnection:
-      type: object
-      description: Properties of the PrivateEndpointConnection.
-      properties:
-        id:
-          type: string
-          readOnly: true
-          description: Fully qualified resource ID for the resource.
-        name:
-          type: string
-          readOnly: true
-          description: The name of the resource.
-        type:
-          type: string
-          readOnly: true
-          description: The type of the resource.
-        location:
-          type: string
-          readOnly: true
-          description: The geo-location where the resource lives.
-        properties:
-          type: object
-          properties:
-            privateEndpoint:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: The ARM identifier for Private Endpoint.
-            privateLinkServiceConnectionState:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: Status of the connection.
-                  enum:
-                  - Pending
-                  - Approved
-                  - Rejected
-                  - Disconnected
-                description:
-                  type: string
-                  description: Description of the connection state.
-            provisioningState:
-              type: string
-              description: Provisioning state of the Private Endpoint Connection.
-              enum:
-              - Creating
-              - Updating
-              - Deleting
-              - Succeeded
-              - Canceled
-              - Failed
-        systemData:
-          $ref: '#/components/schemas/SystemData'
-    Identity:
-      type: object
-      description: Properties to configure Identity for the namespace.
-      properties:
-        principalId:
-          type: string
-          readOnly: true
-          description: ObjectId from the KeyVault.
-        tenantId:
-          type: string
-          readOnly: true
-          description: TenantId from the KeyVault.
-        type:
-          type: string
-          description: Type of managed service identity.
-          enum:
-          - SystemAssigned
-          - UserAssigned
-          - SystemAssigned, UserAssigned
-          - None
-        userAssignedIdentities:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/UserAssignedIdentity'
-          description: Properties for User Assigned Identities.
-    ErrorDetail:
-      type: object
-      description: The error detail.
-      properties:
-        code:
-          type: string
-          readOnly: true
-          description: The error code.
-        message:
-          type: string
-          readOnly: true
-          description: The error message.
-        target:
-          type: string
-          readOnly: true
-          description: The error target.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          readOnly: true
-          description: The error details.
-        additionalInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorAdditionalInfo'
-          readOnly: true
-          description: The error additional info.
     EHNamespace:
       type: object
       description: Single Namespace item in List or Get Operation.
@@ -596,6 +449,99 @@ components:
               description: Alternate name specified when alias and namespace names are same.
         systemData:
           $ref: '#/components/schemas/SystemData'
+    ErrorDetail:
+      type: object
+      description: The error detail.
+      properties:
+        code:
+          type: string
+          readOnly: true
+          description: The error code.
+        message:
+          type: string
+          readOnly: true
+          description: The error message.
+        target:
+          type: string
+          readOnly: true
+          description: The error target.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          description: The error details.
+        additionalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorAdditionalInfo'
+          readOnly: true
+          description: The error additional info.
+    SystemData:
+      type: object
+      description: Metadata pertaining to creation and last modification of the resource.
+      properties:
+        createdBy:
+          type: string
+          description: The identity that created the resource.
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
+    EHNamespaceListResult:
+      type: object
+      description: The response of the List Namespace operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/EHNamespace'
+          description: Result of the List Namespace operation.
+        nextLink:
+          type: string
+          description: Link to the next set of results. Not empty if Value contains incomplete list of namespaces.
+    KeyVaultProperties:
+      type: object
+      description: Properties of KeyVault.
+      properties:
+        keyName:
+          type: string
+          description: Name of the Key from KeyVault.
+        keyVaultUri:
+          type: string
+          description: Uri of KeyVault.
+        keyVersion:
+          type: string
+          description: Key Version.
+        identity:
+          type: object
+          properties:
+            userAssignedIdentity:
+              type: string
+              description: ARM ID of user Identity selected for encryption.
     ErrorAdditionalInfo:
       type: object
       description: The resource management error additional info.
@@ -608,6 +554,67 @@ components:
           type: object
           readOnly: true
           description: The additional info.
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    PrivateEndpointConnection:
+      type: object
+      description: Properties of the PrivateEndpointConnection.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Fully qualified resource ID for the resource.
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource.
+        type:
+          type: string
+          readOnly: true
+          description: The type of the resource.
+        location:
+          type: string
+          readOnly: true
+          description: The geo-location where the resource lives.
+        properties:
+          type: object
+          properties:
+            privateEndpoint:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ARM identifier for Private Endpoint.
+            privateLinkServiceConnectionState:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Status of the connection.
+                  enum:
+                  - Pending
+                  - Approved
+                  - Rejected
+                  - Disconnected
+                description:
+                  type: string
+                  description: Description of the connection state.
+            provisioningState:
+              type: string
+              description: Provisioning state of the Private Endpoint Connection.
+              enum:
+              - Creating
+              - Updating
+              - Deleting
+              - Succeeded
+              - Canceled
+              - Failed
+        systemData:
+          $ref: '#/components/schemas/SystemData'
     Sku:
       type: object
       description: SKU parameters supplied to the create namespace operation.
@@ -633,6 +640,18 @@ components:
           format: int32
           minimum: 0
           description: The Event Hubs throughput units for Basic or Standard tiers, where value should be 0 to 20 throughput units. The Event Hubs premium units for Premium tier, where value should be 0 to 10 premium units.
+    UserAssignedIdentity:
+      type: object
+      description: Recognized Dictionary value.
+      properties:
+        clientId:
+          type: string
+          readOnly: true
+          description: Client Id of user assigned identity.
+        principalId:
+          type: string
+          readOnly: true
+          description: Principal Id of user assigned identity.
     Encryption:
       type: object
       description: Properties to configure Encryption.
@@ -651,33 +670,7 @@ components:
         requireInfrastructureEncryption:
           type: boolean
           description: Enable Infrastructure Encryption (Double Encryption).
-    KeyVaultProperties:
-      type: object
-      description: Properties of KeyVault.
-      properties:
-        keyName:
-          type: string
-          description: Name of the Key from KeyVault.
-        keyVaultUri:
-          type: string
-          description: Uri of KeyVault.
-        keyVersion:
-          type: string
-          description: Key Version.
-        identity:
-          type: object
-          properties:
-            userAssignedIdentity:
-              type: string
-              description: ARM ID of user Identity selected for encryption.
   parameters:
-    SubscriptionIdParameter:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-      schema:
-        type: string
     ApiVersionParameter:
       name: api-version
       in: query
@@ -696,6 +689,13 @@ components:
         minLength: 6
         maxLength: 50
         pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
     ResourceGroupNameParameter:
       name: resourceGroupName
       in: path
