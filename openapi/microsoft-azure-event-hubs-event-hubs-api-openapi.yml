@@ -143,6 +143,148 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    SystemData:
+      type: object
+      description: Metadata pertaining to creation and last modification of the resource.
+      properties:
+        createdBy:
+          type: string
+          description: The identity that created the resource.
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      description: The error detail.
+      properties:
+        code:
+          type: string
+          readOnly: true
+          description: The error code.
+        message:
+          type: string
+          readOnly: true
+          description: The error message.
+        target:
+          type: string
+          readOnly: true
+          description: The error target.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          description: The error details.
+        additionalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorAdditionalInfo'
+          readOnly: true
+          description: The error additional info.
+    ErrorAdditionalInfo:
+      type: object
+      description: The resource management error additional info.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The additional info type.
+        info:
+          type: object
+          readOnly: true
+          description: The additional info.
+    Destination:
+      type: object
+      description: Capture storage details for capture description.
+      properties:
+        name:
+          type: string
+          description: Name for capture destination.
+        identity:
+          $ref: '#/components/schemas/CaptureIdentity'
+        properties:
+          type: object
+          properties:
+            storageAccountResourceId:
+              type: string
+              description: Resource id of the storage account to be used to create the blobs.
+            blobContainer:
+              type: string
+              description: Blob container Name.
+            archiveNameFormat:
+              type: string
+              description: Blob naming convention for archive, e.g. {Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}.
+            dataLakeAccountName:
+              type: string
+              description: The Azure Data Lake Store name for the captured events.
+            dataLakeFolderPath:
+              type: string
+              description: The destination folder path for the captured events.
+            dataLakeSubscriptionId:
+              type: string
+              format: uuid
+              description: Subscription Id of Azure Data Lake Store.
+    CaptureIdentity:
+      type: object
+      description: A value that indicates whether capture description is enabled.
+      properties:
+        type:
+          type: string
+          description: Type of Azure Active Directory Managed Identity.
+          enum:
+          - SystemAssigned
+          - UserAssigned
+        userAssignedIdentity:
+          type: string
+          description: ARM ID of Managed User Identity. This property is required if the type is UserAssignedIdentity.
+    RetentionDescription:
+      type: object
+      description: Properties to configure retention settings for the eventhub.
+      properties:
+        cleanupPolicy:
+          type: string
+          description: Enumerates the possible values for cleanup policy.
+          enum:
+          - Delete
+          - Compact
+        retentionTimeInHours:
+          type: integer
+          format: int64
+          description: Number of hours to retain the events for this Event Hub. This value is only used when cleanupPolicy is Delete.
+        tombstoneRetentionTimeInHours:
+          type: integer
+          format: int32
+          description: Number of hours to retain the tombstone markers of a compacted Event Hub. This value is only used when cleanupPolicy is Compact.
     Eventhub:
       type: object
       description: Single item in List or Get Event Hub operation.
@@ -214,99 +356,6 @@ components:
               $ref: '#/components/schemas/RetentionDescription'
         systemData:
           $ref: '#/components/schemas/SystemData'
-    SystemData:
-      type: object
-      description: Metadata pertaining to creation and last modification of the resource.
-      properties:
-        createdBy:
-          type: string
-          description: The identity that created the resource.
-        createdByType:
-          type: string
-          description: The type of identity that created the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource creation (UTC).
-        lastModifiedBy:
-          type: string
-          description: The identity that last modified the resource.
-        lastModifiedByType:
-          type: string
-          description: The type of identity that last modified the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource last modification (UTC).
-    Destination:
-      type: object
-      description: Capture storage details for capture description.
-      properties:
-        name:
-          type: string
-          description: Name for capture destination.
-        identity:
-          $ref: '#/components/schemas/CaptureIdentity'
-        properties:
-          type: object
-          properties:
-            storageAccountResourceId:
-              type: string
-              description: Resource id of the storage account to be used to create the blobs.
-            blobContainer:
-              type: string
-              description: Blob container Name.
-            archiveNameFormat:
-              type: string
-              description: Blob naming convention for archive, e.g. {Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}.
-            dataLakeAccountName:
-              type: string
-              description: The Azure Data Lake Store name for the captured events.
-            dataLakeFolderPath:
-              type: string
-              description: The destination folder path for the captured events.
-            dataLakeSubscriptionId:
-              type: string
-              format: uuid
-              description: Subscription Id of Azure Data Lake Store.
-    ErrorDetail:
-      type: object
-      description: The error detail.
-      properties:
-        code:
-          type: string
-          readOnly: true
-          description: The error code.
-        message:
-          type: string
-          readOnly: true
-          description: The error message.
-        target:
-          type: string
-          readOnly: true
-          description: The error target.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          readOnly: true
-          description: The error details.
-        additionalInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorAdditionalInfo'
-          readOnly: true
-          description: The error additional info.
     CaptureDescription:
       type: object
       description: Properties to configure capture description for eventhub.
@@ -333,55 +382,6 @@ components:
         skipEmptyArchives:
           type: boolean
           description: A value that indicates whether to skip empty archives.
-    CaptureIdentity:
-      type: object
-      description: A value that indicates whether capture description is enabled.
-      properties:
-        type:
-          type: string
-          description: Type of Azure Active Directory Managed Identity.
-          enum:
-          - SystemAssigned
-          - UserAssigned
-        userAssignedIdentity:
-          type: string
-          description: ARM ID of Managed User Identity. This property is required if the type is UserAssignedIdentity.
-    RetentionDescription:
-      type: object
-      description: Properties to configure retention settings for the eventhub.
-      properties:
-        cleanupPolicy:
-          type: string
-          description: Enumerates the possible values for cleanup policy.
-          enum:
-          - Delete
-          - Compact
-        retentionTimeInHours:
-          type: integer
-          format: int64
-          description: Number of hours to retain the events for this Event Hub. This value is only used when cleanupPolicy is Delete.
-        tombstoneRetentionTimeInHours:
-          type: integer
-          format: int32
-          description: Number of hours to retain the tombstone markers of a compacted Event Hub. This value is only used when cleanupPolicy is Compact.
-    ErrorAdditionalInfo:
-      type: object
-      description: The resource management error additional info.
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The additional info type.
-        info:
-          type: object
-          readOnly: true
-          description: The additional info.
-    ErrorResponse:
-      type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
     EventHubListResult:
       type: object
       description: The result of the List EventHubs operation.
@@ -405,21 +405,6 @@ components:
         minLength: 6
         maxLength: 50
         pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2024-01-01'
-    SubscriptionIdParameter:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-      schema:
-        type: string
     EventHubNameParameter:
       name: eventHubName
       in: path
@@ -438,6 +423,21 @@ components:
         type: string
         minLength: 1
         maxLength: 90
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
   securitySchemes:
     azure_auth:
       type: oauth2

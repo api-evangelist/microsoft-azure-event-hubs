@@ -5,15 +5,19 @@ description: >-
   Azure data and analytics services.
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - azure/azure-sdk-for-net
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid
@@ -35,6 +39,7 @@ tags:
   - IoT
   - Message Ingestion
   - Real-Time Processing
+  - Real-Time
 created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.23'
