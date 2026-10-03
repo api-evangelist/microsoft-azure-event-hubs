@@ -144,59 +144,60 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
+    EventHubNameParameter:
+      name: eventHubName
+      in: path
+      required: true
+      description: The Event Hub name.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 256
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      schema:
+        type: string
+    ResourceGroupNameParameter:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: Name of the resource group within the Azure subscription.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 90
+    NamespaceNameParameter:
+      name: namespaceName
+      in: path
+      required: true
+      description: The Namespace name.
+      schema:
+        type: string
+        minLength: 6
+        maxLength: 50
+        pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+    ConsumerGroupNameParameter:
+      name: consumerGroupName
+      in: path
+      required: true
+      description: The consumer group name.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 50
   schemas:
-    SystemData:
-      type: object
-      description: Metadata pertaining to creation and last modification of the resource.
-      properties:
-        createdBy:
-          type: string
-          description: The identity that created the resource.
-        createdByType:
-          type: string
-          description: The type of identity that created the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource creation (UTC).
-        lastModifiedBy:
-          type: string
-          description: The identity that last modified the resource.
-        lastModifiedByType:
-          type: string
-          description: The type of identity that last modified the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource last modification (UTC).
-    ErrorResponse:
-      type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
-    ConsumerGroupListResult:
-      type: object
-      description: The result of the List Consumer Groups operation.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConsumerGroup'
-          description: Result of the List Consumer Groups operation.
-        nextLink:
-          type: string
-          description: Link to the next set of results. Not empty if Value contains incomplete list of Consumer Groups.
     ErrorDetail:
       type: object
       description: The error detail.
@@ -263,6 +264,12 @@ components:
               description: User Metadata is a placeholder to store user-defined string data with maximum length 1024.
         systemData:
           $ref: '#/components/schemas/SystemData'
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
     ErrorAdditionalInfo:
       type: object
       description: The resource management error additional info.
@@ -275,59 +282,52 @@ components:
           type: object
           readOnly: true
           description: The additional info.
-  parameters:
-    NamespaceNameParameter:
-      name: namespaceName
-      in: path
-      required: true
-      description: The Namespace name.
-      schema:
-        type: string
-        minLength: 6
-        maxLength: 50
-        pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
-    EventHubNameParameter:
-      name: eventHubName
-      in: path
-      required: true
-      description: The Event Hub name.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 256
-    ResourceGroupNameParameter:
-      name: resourceGroupName
-      in: path
-      required: true
-      description: Name of the resource group within the Azure subscription.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 90
-    ConsumerGroupNameParameter:
-      name: consumerGroupName
-      in: path
-      required: true
-      description: The consumer group name.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 50
-    SubscriptionIdParameter:
-      name: subscriptionId
-      in: path
-      required: true
-      description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-      schema:
-        type: string
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2024-01-01'
+    SystemData:
+      type: object
+      description: Metadata pertaining to creation and last modification of the resource.
+      properties:
+        createdBy:
+          type: string
+          description: The identity that created the resource.
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
+    ConsumerGroupListResult:
+      type: object
+      description: The result of the List Consumer Groups operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsumerGroup'
+          description: Result of the List Consumer Groups operation.
+        nextLink:
+          type: string
+          description: Link to the next set of results. Not empty if Value contains incomplete list of Consumer Groups.
   securitySchemes:
     azure_auth:
       type: oauth2
