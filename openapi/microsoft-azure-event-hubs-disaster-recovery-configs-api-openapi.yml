@@ -214,23 +214,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2024-01-01'
-    ResourceGroupNameParameter:
-      name: resourceGroupName
-      in: path
-      required: true
-      description: Name of the resource group within the Azure subscription.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 90
     NamespaceNameParameter:
       name: namespaceName
       in: path
@@ -241,6 +224,15 @@ components:
         minLength: 6
         maxLength: 50
         pattern: ^[a-zA-Z][a-zA-Z0-9-]{6,50}[a-zA-Z0-9]$
+    ResourceGroupNameParameter:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: Name of the resource group within the Azure subscription.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 90
     SubscriptionIdParameter:
       name: subscriptionId
       in: path
@@ -248,66 +240,15 @@ components:
       description: Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
       schema:
         type: string
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2024-01-01'
   schemas:
-    ErrorDetail:
-      type: object
-      description: The error detail.
-      properties:
-        code:
-          type: string
-          readOnly: true
-          description: The error code.
-        message:
-          type: string
-          readOnly: true
-          description: The error message.
-        target:
-          type: string
-          readOnly: true
-          description: The error target.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          readOnly: true
-          description: The error details.
-        additionalInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorAdditionalInfo'
-          readOnly: true
-          description: The error additional info.
-    ArmDisasterRecoveryListResult:
-      type: object
-      description: The result of the List Alias (Disaster Recovery configuration) operation.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArmDisasterRecovery'
-          description: List of Alias (Disaster Recovery configurations).
-        nextLink:
-          type: string
-          readOnly: true
-          description: Link to the next set of results.
-    ErrorResponse:
-      type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
-    ErrorAdditionalInfo:
-      type: object
-      description: The resource management error additional info.
-      properties:
-        type:
-          type: string
-          readOnly: true
-          description: The additional info type.
-        info:
-          type: object
-          readOnly: true
-          description: The additional info.
     SystemData:
       type: object
       description: Metadata pertaining to creation and last modification of the resource.
@@ -390,6 +331,65 @@ components:
               description: Number of entities pending to be replicated.
         systemData:
           $ref: '#/components/schemas/SystemData'
+    ErrorDetail:
+      type: object
+      description: The error detail.
+      properties:
+        code:
+          type: string
+          readOnly: true
+          description: The error code.
+        message:
+          type: string
+          readOnly: true
+          description: The error message.
+        target:
+          type: string
+          readOnly: true
+          description: The error target.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          description: The error details.
+        additionalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorAdditionalInfo'
+          readOnly: true
+          description: The error additional info.
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    ErrorAdditionalInfo:
+      type: object
+      description: The resource management error additional info.
+      properties:
+        type:
+          type: string
+          readOnly: true
+          description: The additional info type.
+        info:
+          type: object
+          readOnly: true
+          description: The additional info.
+    ArmDisasterRecoveryListResult:
+      type: object
+      description: The result of the List Alias (Disaster Recovery configuration) operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArmDisasterRecovery'
+          description: List of Alias (Disaster Recovery configurations).
+        nextLink:
+          type: string
+          readOnly: true
+          description: Link to the next set of results.
   securitySchemes:
     azure_auth:
       type: oauth2
