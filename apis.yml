@@ -226,6 +226,9 @@ apis:
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/eventhub/event-hubs-runtime-rest
 common:
+  - type: CapabilityMap
+    url: capabilities/microsoft-azure-event-hubs-capability-edges.yml
+    name: Azure Event Hubs Business Capability Map
   - type: AgenticAccess
     url: agentic-access/microsoft-azure-event-hubs-agentic-access.yml
   - type: DomainSecurity

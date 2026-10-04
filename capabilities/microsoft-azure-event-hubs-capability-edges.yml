@@ -1,0 +1,25 @@
+slug: microsoft-azure-event-hubs
+provider: Azure Event Hubs
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Namespaces
+  spec_file: microsoft-azure-event-hubs-namespaces-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: Namespaces_CreateOrUpdate "Create or update a namespace"; Namespaces_CreateOrUpdateNetworkRuleSet
+    "Create or update network rule set" — schemas EHNamespace, Sku, NetworkRuleSet, Encryption
+  reason: Provisioning namespaces with SKU, network rule sets, managed identity and encryption settings
+    is cloud compute/network infrastructure management on the Azure control plane.
