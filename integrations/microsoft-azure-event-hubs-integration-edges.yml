@@ -1,0 +1,20 @@
+edges:
+- partner_name: Apache Kafka
+  partner: apache-kafka
+  partner_match: shape-anchor
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  shape: kafka-protocol
+  type: docs
+  degree: declared-unqualified
+  evidence: https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-apache-kafka-overview
+  evidence_kind: own-docs
+  evidence_file: https://github.com/api-evangelist/microsoft-azure-event-hubs/blob/main/evidence/compatibility/microsoft-azure-event-hubs-kafka-protocol-1.md
+  quote: Scale in Event Hubs is controlled by how many throughput units (TUs) or processing units you purchase.
+    If you enable the Auto-Inflate feature for a standard tier namespace, Event Hubs automatically scales up TUs
+    when you reach the throughpu
+  detected_by: sweep-shape-compat.py
+  first_seen: '2026-10-13'
+generated: '2026-10-13'
+method: searched

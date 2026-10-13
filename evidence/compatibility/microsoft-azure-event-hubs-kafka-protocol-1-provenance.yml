@@ -1,0 +1,12 @@
+fetched: '2026-10-13'
+method: fetched
+source: https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-apache-kafka-overview
+page: https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-apache-kafka-overview
+file: microsoft-azure-event-hubs-kafka-protocol-1.md
+bytes: 13575
+sha256: 053b9a05340e594ea30a9ef02b84432a9c043929d0364338f7a6fba6ca5b468b
+anchor: apache-kafka
+shape: kafka-protocol
+classification: declares-compatibility
+quote: Apache Kafka Protocol Support in Azure Event Hubs - Azure Event Hubs | Microsoft Learn
+note: text extracted from the provider's own page (tags stripped), saved for evidence
