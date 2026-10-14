@@ -16,5 +16,27 @@ edges:
     when you reach the throughpu
   detected_by: sweep-shape-compat.py
   first_seen: '2026-10-13'
+- partner_name: mParticle
+  partner: mparticle
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://docs.mparticle.com/integrations/microsoft-azure-event-hubs/event/
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - microsoft-azure-event-hubs
+      integration_types:
+      - event
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 generated: '2026-10-13'
 method: searched
+checked:
+- https://docs.mparticle.com/integrations/microsoft-azure-event-hubs/event/
+source: https://docs.mparticle.com/integrations/microsoft-azure-event-hubs/event/
