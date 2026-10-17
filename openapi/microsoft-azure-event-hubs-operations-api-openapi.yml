@@ -45,6 +45,26 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+    OperationListResult:
+      type: object
+      description: Result of the request to list Event Hub operations. It contains a list of operations and a URL link to get the next set of results.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operation'
+          readOnly: true
+          description: List of Event Hub operations supported by the Microsoft.EventHub resource provider.
+        nextLink:
+          type: string
+          readOnly: true
+          description: URL to get the next set of operation list results.
     Operation:
       type: object
       description: A Event Hub REST API operation.
@@ -106,26 +126,6 @@ components:
             $ref: '#/components/schemas/ErrorAdditionalInfo'
           readOnly: true
           description: The error additional info.
-    OperationListResult:
-      type: object
-      description: Result of the request to list Event Hub operations. It contains a list of operations and a URL link to get the next set of results.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Operation'
-          readOnly: true
-          description: List of Event Hub operations supported by the Microsoft.EventHub resource provider.
-        nextLink:
-          type: string
-          readOnly: true
-          description: URL to get the next set of operation list results.
-    ErrorResponse:
-      type: object
-      description: Error response indicates Event Hub service is not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetail'
     ErrorAdditionalInfo:
       type: object
       description: The resource management error additional info.
