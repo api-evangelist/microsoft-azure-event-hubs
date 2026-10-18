@@ -84,5 +84,5 @@
     - connectors/events/azure-event-hubs
     vendor_link: https://azure.microsoft.com/en-in/services/event-hubs/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
